@@ -22,6 +22,5 @@ app
   .use(router.routes())
   .use(router.allowedMethods());
 
-app.listen(8000, () => {
-  console.log('Server started...');
-});
+const PORT = process.env.PORT || 8000;
+app.listen(PORT);
