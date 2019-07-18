@@ -1,0 +1,42 @@
+header
+  height: 59px
+  width: calc(100% - 80px)
+  margin-left: 80px
+  border-bottom: 1px solid #DAE4F2
+  display: flex
+  align-items: center
+  justify-content: space-between;
+  background-color: $white
+
+  .breadcrumbs
+    margin-left: 50px
+    display: flex
+    justify-content: space-around
+    align-items: center 
+    width: 13%
+    height: 100%
+    @include font('Roboto', 14px)
+    font-style: normal
+    font-weight: normal
+    letter-spacing: 0.69px
+    svg
+      fill: $lightgreen
+    a 
+      text-decoration: none
+      color: $breadcrumbs
+
+  
+  .profile-settings
+    margin-right: 120px
+    display: flex
+    justify-content: space-around
+    align-items: center
+    width: 11%
+    height: 100%
+    @include font('Roboto', 14px)
+    font-style: normal
+    font-weight: normal
+    letter-spacing: 0.28px
+    a 
+      text-decoration: none
+      color: $breadcrumbs

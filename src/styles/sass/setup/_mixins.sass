@@ -1,0 +1,76 @@
+@mixin font($fontname, $size) 
+  font-family: $fontname, sans-serif
+  font-size: $size
+
+@mixin firstLastInput()
+  width: 280px
+  line-height: 40px
+  padding: 0px 13px
+  border: 2px solid $inputColor
+  border-radius: 4px
+  background-color: $inputBackg
+  &::placeholder
+    @include font('Roboto', 14px)
+    font-style: normal
+    font-weight: normal
+    line-height: 16px
+    letter-spacing: 0.28px
+    color: $inputText
+
+@mixin title_main2()
+  @include font('Exo 2', 28px)
+  font-style: normal
+  font-weight: 600
+  line-height: 34px
+  letter-spacing: 0.4px
+  color: #002396
+
+@mixin input_main2()
+  height: 40px
+  width: 330px
+  background-color: $inputBackg
+  border: 2px solid $inputColor
+  border-radius: 2px
+  padding: 0px 13px
+  &::placeholder
+    @include font('Roboto', 14px)
+    font-style: normal
+    font-weight: normal
+    line-height: 16px
+    letter-spacing: 0.28px
+    color: rgba(135, 144, 167, 0.57)
+  &:focus
+    background-color: $white
+    color: $input2Text
+    box-shadow: inset 2px 0 0 0 $selectedMenuBorder
+    outline: none
+
+@mixin button_main2()
+  width: 180px
+  height: 40px
+  background: $lightgreen
+  border: 2px solid transparent
+  border-radius: 2px
+  display: flex
+  justify-content: center
+  align-items: center
+  @include font('Exo 2', 16px)
+  font-style: normal
+  font-weight: 600
+  font-size: 16px
+  line-height: 19px
+  letter-spacing: 0.4px
+  color: $white
+
+@mixin title_mail()
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  @include font('Exo 2', 50px)
+  font-style: normal
+  font-weight: 600
+  line-height: 60px
+  text-align: center
+  letter-spacing: 0.4px
+  color: $selectedMenuBorder

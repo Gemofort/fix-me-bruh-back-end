@@ -1,0 +1,16 @@
+extends base2
+
+include mixins/question.pug
+include mixins/title_main2.pug
+include mixins/input_main2.pug
+include mixins/button_main2.pug
+
+block header2
+  +question('Do you have an account?', 'Sign up')
+
+block main2
+  +title2('Sign in')
+  +input_main2('Email')
+  +input_main2('Password')
+  p.forgot Forgot password?
+  +button_main2('Sign in')

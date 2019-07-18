@@ -1,0 +1,27 @@
+.title_main2
+  display: flex
+  justify-content: flex-start
+  width: 65%
+  @include title_main2()
+
+.input_main2
+  @include input_main2()
+
+.forgot 
+  width: 65%
+  display: flex
+  justify-content: flex-end
+  @include font('Roboto', 12px)
+  font-style: normal
+  font-weight: normal
+  line-height: 14px
+  letter-spacing: 0.28px
+
+  color: $input2Text
+
+.button_main2-wrap
+  width: 65%
+  display: flex
+  justify-content: flex-end
+  .button_main2
+    @include button_main2()

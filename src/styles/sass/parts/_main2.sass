@@ -1,0 +1,76 @@
+.account-info2
+  display: flex
+  margin-top: 50px
+  justify-content: flex-start
+  width: 90%
+  height: 70%
+  .infov3
+    height: 100%
+    width: 40%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    .part
+      width: 100%
+      height: 30%
+      display: flex
+      flex-direction: column
+      justify-content: space-around
+      .title
+        @include font('Roboto', 12px)
+        font-style: normal
+        font-weight: bold
+        line-height: 14px
+        letter-spacing: 1px
+        text-transform: uppercase
+        color: $titleText
+      .firstLast
+        @include firstLastInput()
+  
+  .infov4
+    height: 100%
+    width: 40%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    .part
+      width: 100%
+      height: 30%
+      display: flex
+      flex-direction: column
+      justify-content: space-around
+      .title
+        width: 100%
+        display: flex
+        justify-content: flex-start
+        @include font('Roboto', 12px)
+        font-style: normal
+        font-weight: bold
+        line-height: 14px
+        letter-spacing: 1px
+        text-transform: uppercase
+        color: $titleText
+      .firstLast
+        @include firstLastInput()
+
+    .change-password
+      width: 89%
+      height: 50%
+      display: flex
+      justify-content: flex-end
+      align-items: flex-start
+      flex-direction: row
+      .passwd-wrap
+        width: 50%
+        display: flex
+        justify-content: space-between
+        align-items: center  
+        a
+          @include font('Roboto', 12px)
+          font-style: normal
+          font-weight: 500
+          line-height: 14px
+          letter-spacing: 0.28px
+          text-transform: uppercase
+          text-decoration: none
+          color: #01134E

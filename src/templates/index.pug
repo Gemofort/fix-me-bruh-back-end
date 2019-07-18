@@ -1,0 +1,47 @@
+extends base.pug
+
+block content
+  section.selectmenu
+    article.personal-inf.active
+      a(href="#") PERSONAL INFORMATION 
+    article.personal-inf
+      a(href="#") ACCOUNT INFORMATION
+  section.account-info
+    - const user = {"firstName" : "Faruh", "lastName": "Bernandez", "title": "Mr", "mobilePhone": "+65" }
+    article.photo
+      img(src="./images/Faruh.jpg", alt="" class="profile-photo")
+      .change
+        img(src="./images/Pen.svg", alt="")
+        a(href="#") Change photo
+    article.infov1
+      .part
+        p.title First Name
+        form(action="")
+          input(type="text" placeholder=user.firstName class="firstLast")
+      .part
+        p.title Title
+        .title-choose
+          p= user.title
+          img(src="./images/Chevron-down.svg", alt="" class="chevron-down")
+      .part
+        p.title Country
+        .title-choose
+          img(src="./images/Location.svg", alt="" class="location")
+          img(src="./images/Chevron-down.svg", alt="" class="chevron-down")
+
+    article.infov2
+      .part
+        p.title Last Name
+        form(action="")
+          input(type="text" placeholder=user.firstName class="firstLast")
+      .part
+        p.title Mobile Phone
+          .title-choose
+            .country
+              img(src="./images/Flag.svg", alt="")
+              img(src="./images/Chevron-down.svg", alt="")
+            input(type="text" placeholder=user.mobilePhone)
+      .part
+        p.title Company
+        form(action="")
+          input(type="text" class="firstLast")

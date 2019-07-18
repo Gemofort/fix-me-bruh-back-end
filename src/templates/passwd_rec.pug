@@ -1,0 +1,14 @@
+extends base2
+
+include mixins/question.pug
+include mixins/title_main2.pug
+include mixins/input_main2.pug
+include mixins/button_main2.pug
+
+block header2
+  +question('Back to', 'Sign in')
+
+block main2
+  +title2('Enter your email to reset your password')
+  +input_main2('Email')
+  +button_main2('Send')

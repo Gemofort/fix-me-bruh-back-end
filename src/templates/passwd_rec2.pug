@@ -1,0 +1,16 @@
+extends mail_check_base
+
+include mixins/question.pug
+include mixins/title_mail.pug
+include mixins/input_main2.pug
+
+block header2
+  +question('Back to', 'Sign in')
+
+block mainMail
+  .bg
+    img(src="./images/MailCheck.svg", alt="")
+  img(src="./images/Letter.svg", alt="")
+  .mailMessage_wrap
+    +title_mail('You are almost ready to go!')
+    p.mailMessage Please check your email to reset your password
