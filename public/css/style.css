@@ -1,0 +1,744 @@
+body {
+  background-color: #F9FAFC;
+}
+
+nav {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  height: 100vh;
+  left: 0;
+  background-color: #01134E;
+}
+
+nav .logo {
+  display: flex;
+  width: 100%;
+  height: 10%;
+  justify-content: center;
+  align-items: center;
+}
+
+nav .icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+nav .icons .icon {
+  width: 100%;
+  height: 48px;
+  border-left: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+nav .icons .icon:first-child {
+  margin-top: 75px;
+}
+
+nav .icons .icon.active {
+  box-shadow: inset 4px 0 0 0 #0AD69C;
+}
+
+nav .icons .icon a {
+  display: flex;
+  align-items: center;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: calc(100% - 400px);
+  padding: 40px 40px;
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  box-shadow: 0px 0px 30px rgba(153, 163, 174, 0.06);
+  margin-left: 120px;
+  margin-top: 25px;
+}
+
+main .selectmenu {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+main .selectmenu .personal-inf {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 50px;
+  box-shadow: inset 0 -2px 0 0 #E9E9E9;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 19px;
+  text-decoration: none;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+main .selectmenu .personal-inf a {
+  color: #CCD0DC;
+  text-decoration: none;
+}
+
+main .selectmenu .personal-inf.active {
+  box-shadow: inset 0 -2px 0 0 #2A74DB;
+}
+
+main .selectmenu .personal-inf.active a {
+  color: #01134E;
+  text-decoration: none;
+}
+
+main .account-info {
+  display: flex;
+  margin-top: 50px;
+  justify-content: space-between;
+  width: 90%;
+  height: 70%;
+}
+
+main .account-info .photo {
+  display: flex;
+  flex-direction: column;
+  width: 130px;
+}
+
+main .account-info .photo .profile-photo {
+  height: 130px;
+  width: 130px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+main .account-info .photo .change {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+main .account-info .photo .change img {
+  height: 13px;
+  width: 13px;
+  border-radius: 0px;
+}
+
+main .account-info .photo .change a {
+  margin-left: 3px;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 14px;
+  letter-spacing: 0.28px;
+  color: #35373B;
+}
+
+main .account-info .infov1 {
+  height: 100%;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+main .account-info .infov1 .part {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+main .account-info .infov1 .part .title {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #546087;
+}
+
+main .account-info .infov1 .part .firstLast {
+  margin-top: 4px;
+  width: 280px;
+  line-height: 40px;
+  padding: 0px 13px;
+  border: 2px solid #F2F2F2;
+  border-radius: 4px;
+  background-color: #FCFCFC;
+}
+
+main .account-info .infov1 .part .firstLast::placeholder {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 16px;
+  letter-spacing: 0.28px;
+  color: #35373B;
+}
+
+main .account-info .infov1 .part .title-choose {
+  margin-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  padding: 0px 13px;
+  border: 2px solid #F2F2F2;
+  border-radius: 4px;
+  background-color: #FCFCFC;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 16px;
+  letter-spacing: 0.28px;
+  color: #35373B;
+}
+
+main .account-info .infov2 {
+  height: 100%;
+  width: 310px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+main .account-info .infov2 .part {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+main .account-info .infov2 .part .title {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #546087;
+}
+
+main .account-info .infov2 .part .firstLast {
+  margin-top: 4px;
+  width: 280px;
+  line-height: 40px;
+  padding: 0px 13px;
+  border: 2px solid #F2F2F2;
+  border-radius: 4px;
+  background-color: #FCFCFC;
+}
+
+main .account-info .infov2 .part .firstLast::placeholder {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 16px;
+  letter-spacing: 0.28px;
+  color: #35373B;
+}
+
+main .account-info .infov2 .part .title-choose {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+main .account-info .infov2 .part .title-choose .country {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 20%;
+  height: 40px;
+  border: 2px solid #F2F2F2;
+  border-radius: 4px;
+  background-color: #FCFCFC;
+  padding: 0px 13px;
+}
+
+main .account-info .infov2 .part .title-choose input[type=text] {
+  display: flex;
+  align-items: center;
+  width: 180px;
+  padding: 0px 13px;
+  border: 2px solid #F2F2F2;
+  border-radius: 4px;
+  background-color: #FCFCFC;
+}
+
+main .account-info .infov2 .part .title-choose input[type=text]::placeholder {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 16px;
+  letter-spacing: 0.28px;
+  color: #35373B;
+}
+
+.account-info2 {
+  display: flex;
+  margin-top: 50px;
+  justify-content: flex-start;
+  width: 90%;
+  height: 70%;
+}
+
+.account-info2 .infov3 {
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.account-info2 .infov3 .part {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.account-info2 .infov3 .part .title {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #546087;
+}
+
+.account-info2 .infov3 .part .firstLast {
+  width: 280px;
+  line-height: 40px;
+  padding: 0px 13px;
+  border: 2px solid #F2F2F2;
+  border-radius: 4px;
+  background-color: #FCFCFC;
+}
+
+.account-info2 .infov3 .part .firstLast::placeholder {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 16px;
+  letter-spacing: 0.28px;
+  color: #35373B;
+}
+
+.account-info2 .infov4 {
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.account-info2 .infov4 .part {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.account-info2 .infov4 .part .title {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #546087;
+}
+
+.account-info2 .infov4 .part .firstLast {
+  width: 280px;
+  line-height: 40px;
+  padding: 0px 13px;
+  border: 2px solid #F2F2F2;
+  border-radius: 4px;
+  background-color: #FCFCFC;
+}
+
+.account-info2 .infov4 .part .firstLast::placeholder {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 16px;
+  letter-spacing: 0.28px;
+  color: #35373B;
+}
+
+.account-info2 .infov4 .change-password {
+  width: 89%;
+  height: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.account-info2 .infov4 .change-password .passwd-wrap {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.account-info2 .infov4 .change-password .passwd-wrap a {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0.28px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #01134E;
+}
+
+header {
+  height: 59px;
+  width: calc(100% - 80px);
+  margin-left: 80px;
+  border-bottom: 1px solid #DAE4F2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #FFFFFF;
+}
+
+header .breadcrumbs {
+  margin-left: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 13%;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: 0.69px;
+}
+
+header .breadcrumbs svg {
+  fill: #0AD69C;
+}
+
+header .breadcrumbs a {
+  text-decoration: none;
+  color: #252F48;
+}
+
+header .profile-settings {
+  margin-right: 120px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 11%;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: 0.28px;
+}
+
+header .profile-settings a {
+  text-decoration: none;
+  color: #252F48;
+}
+
+.body2 {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header2 {
+  width: 85%;
+  height: 10%;
+  margin-left: 0px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+}
+
+.header2 .question-wrap {
+  display: flex;
+  width: 30%;
+  justify-content: flex-end;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header2 .question-wrap .question {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 19px;
+  color: #222428;
+  letter-spacing: 0.28px;
+}
+
+.header2 .question-wrap .action {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 19px;
+  color: blue;
+  letter-spacing: 0.28px;
+}
+
+.main2 {
+  height: 60%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
+
+.header3 {
+  position: fixed;
+  width: 85%;
+  height: 10%;
+  margin-left: 0px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+}
+
+.header3 .question-wrap {
+  display: flex;
+  width: 30%;
+  justify-content: flex-end;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header3 .question-wrap .question {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 19px;
+  color: #222428;
+  letter-spacing: 0.28px;
+}
+
+.header3 .question-wrap .action {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 19px;
+  color: blue;
+  letter-spacing: 0.28px;
+}
+
+.title_main2 {
+  display: flex;
+  justify-content: flex-start;
+  width: 65%;
+  font-family: "Exo 2", sans-serif;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 34px;
+  letter-spacing: 0.4px;
+  color: #002396;
+}
+
+.input_main2 {
+  height: 40px;
+  width: 330px;
+  background-color: #FCFCFC;
+  border: 2px solid #F2F2F2;
+  border-radius: 2px;
+  padding: 0px 13px;
+}
+
+.input_main2::placeholder {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 16px;
+  letter-spacing: 0.28px;
+  color: rgba(135, 144, 167, 0.57);
+}
+
+.input_main2:focus {
+  background-color: #FFFFFF;
+  color: #222428;
+  box-shadow: inset 2px 0 0 0 #2A74DB;
+  outline: none;
+}
+
+.forgot {
+  width: 65%;
+  display: flex;
+  justify-content: flex-end;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 14px;
+  letter-spacing: 0.28px;
+  color: #222428;
+}
+
+.button_main2-wrap {
+  width: 65%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button_main2-wrap .button_main2 {
+  width: 180px;
+  height: 40px;
+  background: #0AD69C;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Exo 2", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.4px;
+  color: #FFFFFF;
+}
+
+.body3 {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.body3 .mainMail {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0px;
+  box-shadow: none;
+}
+
+.body3 .mainMail .bg {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.body3 .mainMail .bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: none;
+  z-index: -1;
+}
+
+.body3 .mainMail .mailMessage_wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.body3 .mainMail .mailMessage_wrap .title_mail {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Exo 2", sans-serif;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 60px;
+  text-align: center;
+  letter-spacing: 0.4px;
+  color: #2A74DB;
+}
+
+.body3 .mainMail .mailMessage_wrap .mailMessage {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: "Exo 2", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0.4px;
+  color: #000000;
+}

@@ -1,19 +1,14 @@
 const Koa = require('koa');
 const views = require('koa-views');
 const Router = require('koa-router');
+const bodyparser = require('koa-bodyparser');
 const serve = require('koa-static');
 const path = require('path');
-const sass = require('./sassConverter');
 
 const app = new Koa();
 const router = new Router();
 
-app.use(sass({
-  src: path.join(__dirname, 'src/styles/sass'),
-  dest: './public/css',
-  debug: true,
-  outputStyle: 'compressed',
-}));
+app.use(bodyparser());
 
 app.use(views(path.join(__dirname, 'src/templates'), {
   extension: 'pug',
