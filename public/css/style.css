@@ -534,6 +534,7 @@ header .profile-settings a {
   line-height: 19px;
   color: blue;
   letter-spacing: 0.28px;
+  text-decoration: none;
 }
 
 .main2 {
@@ -599,6 +600,19 @@ header .profile-settings a {
   color: #002396;
 }
 
+.title_comp {
+  display: flex;
+  justify-content: flex-start;
+  width: 65%;
+  font-family: "Exo 2", sans-serif;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 34px;
+  letter-spacing: 0.4px;
+  color: #01134E;
+}
+
 .input_main2 {
   height: 40px;
   width: 330px;
@@ -635,7 +649,12 @@ header .profile-settings a {
   font-weight: normal;
   line-height: 14px;
   letter-spacing: 0.28px;
+  text-decoration: none;
   color: #222428;
+}
+
+.forgot:link {
+  text-decoration: none;
 }
 
 .button_main2-wrap {
@@ -661,6 +680,82 @@ header .profile-settings a {
   line-height: 19px;
   letter-spacing: 0.4px;
   color: #FFFFFF;
+}
+
+.input_wrap {
+  width: 360px;
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input_wrap .input_split {
+  width: 40%;
+  padding: 0px 13px;
+  height: 100%;
+  border: 2px solid #F2F2F2;
+  border-radius: 2px;
+  background-color: #FCFCFC;
+}
+
+.input_wrap .input_split::placeholder {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 16px;
+  letter-spacing: 0.28px;
+  color: rgba(135, 144, 167, 0.57);
+}
+
+.input_wrap .input_split:focus {
+  background-color: #FFFFFF;
+  color: #222428;
+  box-shadow: inset 2px 0 0 0 #2A74DB;
+  outline: none;
+}
+
+.checkbox {
+  width: 360px;
+  height: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.checkbox label {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+}
+
+.checkbox label .agreement-wrap {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.checkbox label .agreement-wrap .agreement1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 16px;
+  letter-spacing: 0.28px;
+  color: #222428;
+}
+
+.checkbox label .agreement-wrap .agreement2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  margin-left: 5px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 16px;
+  letter-spacing: 0.28px;
+  color: #002396;
+  text-decoration: none;
 }
 
 .body3 {

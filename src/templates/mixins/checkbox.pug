@@ -1,0 +1,7 @@
+include agreement.pug
+
+mixin checkbox(statement, action)
+  .checkbox
+    input(type="checkbox" id="checkbox")
+    label(for="checkbox")
+      +agreement(statement, action)

@@ -3,11 +3,10 @@ extends base.pug
 block content
   section.selectmenu
     article.personal-inf.active
-      a(href="#") PERSONAL INFORMATION 
+      a(href="/personInfo") PERSONAL INFORMATION 
     article.personal-inf
-      a(href="#") ACCOUNT INFORMATION
+      a(href="/accInfo") ACCOUNT INFORMATION
   section.account-info
-    - const user = {"firstName" : "Faruh", "lastName": "Bernandez", "title": "Mr", "mobilePhone": "+65" }
     article.photo
       img(src="./images/Faruh.jpg", alt="" class="profile-photo")
       .change
@@ -17,11 +16,11 @@ block content
       .part
         p.title First Name
         form(action="")
-          input(type="text" placeholder=user.firstName class="firstLast")
+          input(type="text" placeholder=firstName class="firstLast")
       .part
         p.title Title
         .title-choose
-          p= user.title
+          p= title
           img(src="./images/Chevron-down.svg", alt="" class="chevron-down")
       .part
         p.title Country
@@ -33,14 +32,14 @@ block content
       .part
         p.title Last Name
         form(action="")
-          input(type="text" placeholder=user.firstName class="firstLast")
+          input(type="text" placeholder=lastName class="firstLast")
       .part
         p.title Mobile Phone
           .title-choose
             .country
               img(src="./images/Flag.svg", alt="")
               img(src="./images/Chevron-down.svg", alt="")
-            input(type="text" placeholder=user.mobilePhone)
+            input(type="text" placeholder="+65")
       .part
         p.title Company
         form(action="")

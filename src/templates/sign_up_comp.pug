@@ -1,0 +1,18 @@
+extends base2
+
+include mixins/question.pug
+include mixins/title_comp.pug
+include mixins/input_main2.pug
+include mixins/checkbox.pug
+include mixins/button_main2.pug
+
+block header2
+  +question('Already have an account?', 'Log in')
+
+block main2
+  +titleComp('Complete your account')
+  +input_main2('Create a password')
+  +input_main2('Confirm password')
+  +checkbox('I agree to the myFixer.com', 'Terms of Service')
+  +checkbox('I agree to the myFixer.com', 'Privacy Policy')
+  +button_main2('Get started')
