@@ -8,3 +8,4 @@
 [Password recovery 2](https://gemofort.github.io/db2_hw5/passwd_rec2.html)<br/>
 [Password recovery 3](https://gemofort.github.io/db2_hw5/passwd_reset.html)<br/>
 [Sign up](https://koa-demo.herokuapp.com/signUp)
+[Sign up complete](https://koa-demo.herokuapp.com/signUp/complete)
