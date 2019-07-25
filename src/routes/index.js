@@ -6,8 +6,8 @@ const signIn = require('../controllers/signIn');
 const router = new Router();
 
 router.get('', perInfo.loadMainpage);
-router.get('personInfo', perInfo.loadMainpage);
-router.get('accInfo', accInfo.loadAccInfo);
+router.get('personInfo/:id', perInfo.loadMainpage);
+router.get('accInfo/:id', accInfo.loadAccInfo);
 router.get('signIn', signIn.loadSignIn);
 
 module.exports = router;

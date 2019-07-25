@@ -1,10 +1,12 @@
 const User = require('../models/user');
 
 exports.loadMainpage = async (ctx) => {
-  const user = await User.findOne({ firstName: 'Faruh' });
+  console.log(ctx.params.id);
+  const user = await User.findOne({ _id: ctx.params.id });
   await ctx.render('index', {
     firstName: user.firstName,
     lastName: user.lastName,
     title: user.title,
+    id: ctx.params.id,
   });
 };

@@ -6,6 +6,7 @@ const serve = require('koa-static');
 const mongoose = require('mongoose');
 const path = require('path');
 const config = require('config');
+const beautifulUnique = require('mongoose-beautiful-unique-validation');
 
 const app = new Koa();
 const router = new Router();
@@ -19,6 +20,8 @@ mongoose.connect(config.get('localdb'), {
   useNewUrlParser: true,
   useCreateIndex: true,
 });
+
+mongoose.plugin(beautifulUnique);
 
 app.use(bodyparser({
   multipart: true,
