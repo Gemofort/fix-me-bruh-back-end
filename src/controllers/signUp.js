@@ -1,10 +1,10 @@
 const User = require('../models/user');
 
-exports.loadSignUp = async (ctx) => {
+exports.signUp = async (ctx) => {
   await ctx.render('sign_up');
 };
 
-exports.loadComplete = async (ctx) => {
+exports.complete = async (ctx) => {
   await ctx.render('sign_up_comp');
 };
 

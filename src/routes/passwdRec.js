@@ -3,6 +3,6 @@ const passwdRec = require('../controllers/passwdRec');
 
 const router = new Router();
 
-router.get('/email', passwdRec.loadPasswdRec);
+router.get('/email', passwdRec.passwdRec);
 
 module.exports = router;

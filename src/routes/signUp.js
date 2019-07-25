@@ -3,8 +3,8 @@ const signUp = require('../controllers/signUp');
 
 const router = new Router();
 
-router.get('/', signUp.loadSignUp);
+router.get('/', signUp.signUp);
 router.post('/', signUp.postSignUp);
-router.get('/complete', signUp.loadComplete);
+router.get('/complete', signUp.complete);
 
 module.exports = router;

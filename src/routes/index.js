@@ -5,9 +5,9 @@ const signIn = require('../controllers/signIn');
 
 const router = new Router();
 
-router.get('', perInfo.loadMainpage);
-router.get('personInfo/:id', perInfo.loadMainpage);
-router.get('accInfo/:id', accInfo.loadAccInfo);
-router.get('signIn', signIn.loadSignIn);
+router.get('', perInfo.mainpage);
+router.get('personInfo/:id', perInfo.mainpage);
+router.get('accInfo/:id', accInfo.accInfo);
+router.get('signIn', signIn.signIn);
 
 module.exports = router;
