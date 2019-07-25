@@ -10,8 +10,14 @@ const config = require('config');
 const app = new Koa();
 const router = new Router();
 
-mongoose.connect(config.get('databaseUrl'), {
+// mongoose.connect(config.get('databaseUrl'), {
+//   useNewUrlParser: true,
+//   useCreateIndex: true,
+// });
+
+mongoose.connect(config.get('localdb'), {
   useNewUrlParser: true,
+  useCreateIndex: true,
 });
 
 app.use(bodyparser({
