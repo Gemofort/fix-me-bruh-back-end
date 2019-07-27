@@ -4,6 +4,11 @@ include mixins/question.pug
 include mixins/title_mail.pug
 include mixins/input_main2.pug
 
+block breadcrumbs
+  a(href="#") Home
+  img(src="/images/Chevron-right.svg", alt="")
+  a(href="#") My profile
+
 block header2
   +question('Back to', 'Sign in', '/signIn')
 

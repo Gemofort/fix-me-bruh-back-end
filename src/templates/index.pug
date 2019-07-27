@@ -1,5 +1,29 @@
 extends base.pug
 
+block icons
+  .icon
+    a(href="")
+      include ../assets/img/Loop.svg
+  .icon.active
+    a(href="")
+      include ../assets/img/Profile.svg
+
+  .icon
+    a(href="")
+      include ../assets/img/Mail.svg
+  .icon
+    a(href="")
+      include ../assets/img/Schedule.svg
+
+block breadcrumbs
+  a(href="#") Home
+  img(src="/images/Chevron-right.svg", alt="")
+  a(href="#") My profile
+
+block headerInfo
+  a(href="#") Faruh Bernandez
+  img(src="/images/Chevron-down.svg", alt="")
+
 block content
   section.selectmenu
     article.personal-inf.active

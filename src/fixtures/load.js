@@ -1,6 +1,6 @@
 const config = require('config');
 const path = require('path');
-const fixtures = require('pow-mongodb-fixtures').connect(config.get('localdb'));
+const fixtures = require('pow-mongodb-fixtures').connect(config.get('databaseUrl'));
 // [
 //   {
 //     'repeat(7, 10)': {

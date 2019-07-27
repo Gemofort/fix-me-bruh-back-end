@@ -1,0 +1,64 @@
+.search_menu
+  height: 100%
+  width: 30%
+  display: flex
+  flex-direction: column 
+  align-items: flex-start
+  justify-content: space-between
+  border-right: 1px solid $borderMenu
+  .part
+    width: 90%
+    height: 15%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: flex-start
+    .title
+      @include font('Roboto', 12px)
+      font-style: normal
+      font-weight: bold
+      line-height: 14px
+      letter-spacing: 1px
+      text-transform: uppercase
+      color: $titleText
+    .firstLast
+      margin-top: 4px
+      @include searchInput()
+    .title-choose
+      margin-top: 4px
+      display: flex
+      justify-content: space-between
+      align-items: center
+      width: 90%
+      height: 40px
+      padding: 0px 13px
+      border: 2px solid $inputColor
+      border-radius: 4px
+      background-color: $inputBackg
+      @include font('Roboto', 14px)
+      font-style: normal
+      font-weight: normal
+      line-height: 16px
+      letter-spacing: 0.28px
+      color: $inputText
+  .button-wrap
+    width: 100%
+    display: flex
+    justify-content: center
+    .button
+      width: 180px
+      height: 40px
+      background: $lightgreen
+      border: 2px solid transparent
+      border-radius: 2px
+      display: flex
+      justify-content: center
+      align-items: center
+      @include font('Roboto', 14px)
+      font-style: normal
+      font-weight: bold
+      line-height: 16px
+      letter-spacing: 0.4px
+      color: $white
+  
+  

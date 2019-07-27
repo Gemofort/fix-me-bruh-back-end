@@ -46,9 +46,19 @@ nav .icons .icon.active {
   box-shadow: inset 4px 0 0 0 #0AD69C;
 }
 
+nav .icons .icon.active a svg path {
+  fill: white;
+  fill-opacity: 1;
+}
+
 nav .icons .icon a {
   display: flex;
   align-items: center;
+}
+
+nav .icons .icon a svg path {
+  fill: rgba(255, 255, 255, 0.5);
+  fill-opacity: 1;
 }
 
 body {
@@ -59,7 +69,7 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 450px;
   width: calc(100% - 400px);
   padding: 40px 40px;
   background-color: #FFFFFF;
@@ -675,7 +685,7 @@ header .profile-settings a {
   font-family: "Exo 2", sans-serif;
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 16px;
   line-height: 19px;
   letter-spacing: 0.4px;
@@ -836,4 +846,98 @@ header .profile-settings a {
   line-height: 29px;
   letter-spacing: 0.4px;
   color: #000000;
+}
+
+.search_menu {
+  height: 100%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-right: 1px solid #E7EAF5;
+}
+
+.search_menu .part {
+  width: 90%;
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.search_menu .part .title {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #546087;
+}
+
+.search_menu .part .firstLast {
+  margin-top: 4px;
+  display: flex;
+  width: 90%;
+  line-height: 40px;
+  padding: 0px 13px;
+  border: 2px solid #F2F2F2;
+  border-radius: 4px;
+  background-color: #FCFCFC;
+}
+
+.search_menu .part .firstLast::placeholder {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 16px;
+  letter-spacing: 0.28px;
+}
+
+.search_menu .part .title-choose {
+  margin-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  height: 40px;
+  padding: 0px 13px;
+  border: 2px solid #F2F2F2;
+  border-radius: 4px;
+  background-color: #FCFCFC;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 16px;
+  letter-spacing: 0.28px;
+  color: #35373B;
+}
+
+.search_menu .button-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.search_menu .button-wrap .button {
+  width: 180px;
+  height: 40px;
+  background: #0AD69C;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+  color: #FFFFFF;
 }

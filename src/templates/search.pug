@@ -1,0 +1,56 @@
+extends base.pug
+
+block icons
+  .icon.active
+    a(href="")
+      include ../assets/img/Loop.svg
+  .icon
+    a(href="")
+      include ../assets/img/Profile.svg
+
+  .icon
+    a(href="")
+      include ../assets/img/Mail.svg
+  .icon
+    a(href="")
+      include ../assets/img/Schedule.svg
+
+block breadcrumbs
+  a(href="#") Home
+  img(src="/images/Chevron-right.svg", alt="")
+  a(href="#") Search
+  img(src="/images/Chevron-right.svg", alt="")
+  a(href="#") Results
+
+block headerInfo
+  a(href="#") Sarah Freeman
+  img(src="/images/Chevron-down.svg", alt="")
+
+block content
+  section.search_menu
+    .part
+      p.title Location
+      .title-choose
+        img(src="/images/Location.svg", alt="" class="location")
+        img(src="/images/Chevron-down.svg", alt="" class="chevron-down")
+    .part
+      p.title Search
+      input(type="text" placeholder="Type your query..." class="firstLast")
+    .part
+      p.title Category
+      .title-choose
+        p Category
+        img(src="/images/Chevron-down.svg", alt="" class="chevron-down")
+    .part
+      p.title Service
+      .title-choose
+        p 3 services
+        img(src="/images/Chevron-down.svg", alt="" class="chevron-down")
+    .part
+      p.title Period
+      .title-choose
+        p In progress
+        img(src="/images/Chevron-down.svg", alt="" class="chevron-down")
+    .button-wrap
+      button.button SEARCH
+  section.seacrh_results

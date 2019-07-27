@@ -14,25 +14,11 @@ html(lang="en")
         a(href="#")
           img(src="/images/Logo.svg", alt="logo")
       .icons
-        .icon
-          a(href="")
-            img(src="/images/Loop.svg", alt="")
-        .icon.active
-          a(href="")
-            img(src="/images/Profile.svg", alt="")
-        .icon
-          a(href="")
-            img(src="/images/Mail.svg", alt="")
-        .icon
-          a(href="")
-            img(src="/images/Schedule.svg", alt="")
+        block icons 
     header
       .breadcrumbs
-        a(href="#") Home
-        img(src="/images/Chevron-right.svg", alt="")
-        a(href="#") My profile
+        block breadcrumbs
       .profile-settings
-        a(href="#") Faruh Bernandez
-        img(src="/images/Chevron-down.svg", alt="")
+        block headerInfo 
     main
       block content
