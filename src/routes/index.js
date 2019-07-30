@@ -6,7 +6,7 @@ const search = require('../controllers/search');
 
 const router = new Router();
 
-router.get('', perInfo.mainpage);
+router.get('', search.searchPeople);
 router.get('personInfo/:id', perInfo.mainpage);
 router.get('accInfo/:id', accInfo.accInfo);
 router.get('signIn', signIn.signIn);

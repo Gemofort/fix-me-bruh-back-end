@@ -69,6 +69,7 @@ body {
 main {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   height: 450px;
   width: calc(100% - 400px);
   padding: 40px 40px;
@@ -462,7 +463,7 @@ header .breadcrumbs {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 13%;
+  width: 15%;
   height: 100%;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
@@ -940,4 +941,114 @@ header .profile-settings a {
   line-height: 16px;
   letter-spacing: 0.4px;
   color: #FFFFFF;
+}
+
+.search_results {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.search_results .search_topbar {
+  width: 100%;
+  height: 30px;
+  padding: 0px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search_results .search_topbar .show_map {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.28px;
+  text-transform: uppercase;
+  color: #01134E;
+}
+
+.search_results .search_topbar .topbar_menu {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search_results .search_topbar .topbar_menu .radios {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search_results .search_topbar .topbar_menu .radios .radio {
+  display: flex;
+  align-items: center;
+}
+
+.search_results .search_topbar .topbar_menu .radios .radio input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.search_results .search_topbar .topbar_menu .radios .radio input[type="radio"] + .radio-label:before {
+  content: '';
+  background: #FFFFFF;
+  border-radius: 100%;
+  border: 1px solid #bfbfbf;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  position: relative;
+  margin-right: 10px;
+  vertical-align: top;
+  cursor: pointer;
+  text-align: center;
+  transition: all 250ms ease;
+}
+
+.search_results .search_topbar .topbar_menu .radios .radio input[type="radio"]:checked + .radio-label:before {
+  background-color: #0AD69C;
+  box-shadow: inset 0 0 0 5px #FFFFFF, 0px 1px 7px rgba(204, 202, 212, 0.58);
+  border-color: #FFFFFF;
+}
+
+.search_results .search_topbar .topbar_menu .radios .radio input[type="radio"]:focus + .radio-label:before {
+  outline: none;
+  border-color: #FFFFFF;
+}
+
+.search_results .search_topbar .topbar_menu .radios .radio input[type="radio"]:disabled + .radio-label:before {
+  box-shadow: inset 0 0 0 4px #FFFFFF;
+  border-color: #bfbfbf;
+  background: #bfbfbf;
+}
+
+.search_results .search_topbar .topbar_menu .radios .radio input[type="radio"] + .radio-label:empty:before {
+  margin-right: 0;
+}
+
+.search_results .search_topbar .topbar_menu .radios .radio span {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: -0.046704px;
+  line-height: 28px;
+  color: #000;
+}
+
+.search_results ul {
+  display: flex;
+  flex-direction: row;
+  align-items: space-around;
 }

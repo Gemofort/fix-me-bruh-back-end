@@ -1,4 +1,16 @@
 const id = require('pow-mongodb-fixtures').createObjectId;
+const mongoose = require('mongoose');
+const config = require('config');
+const User = require('../models/user');
+const Category = require('../models/category');
+
+mongoose.connect(config.get('databaseUrl'), {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+})
+  .catch((err) => {
+    console.log(err);
+  });
 
 const users = [
   {
@@ -94,6 +106,11 @@ const users = [
   },
 ];
 
+users.forEach(async (user) => {
+  const userDb = new User(user);
+  await userDb.save();
+});
+
 const categories = [
   {
     name: 'Node.js',
@@ -106,7 +123,12 @@ const categories = [
   },
 ];
 
-module.exports = {
-  users,
-  categories,
-};
+categories.forEach(async (category) => {
+  const catDb = new Category(category);
+  await catDb.save();
+});
+
+// module.exports = {
+//   users,
+//   categories,
+// };

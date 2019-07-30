@@ -6,5 +6,6 @@ exports.accInfo = async (ctx) => {
   await ctx.render('mainpage2', {
     username: user.username,
     email: user.email,
+    id: user.id,
   });
 };

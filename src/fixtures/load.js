@@ -1,6 +1,6 @@
-const config = require('config');
-const path = require('path');
-const fixtures = require('pow-mongodb-fixtures').connect(config.get('databaseUrl'));
+// const config = require('config');
+// const path = require('path');
+// const fixtures = require('pow-mongodb-fixtures').connect(config.get('databaseUrl'));
 // [
 //   {
 //     'repeat(7, 10)': {
@@ -23,9 +23,9 @@ const fixtures = require('pow-mongodb-fixtures').connect(config.get('databaseUrl
 //   }
 // ]
 
-fixtures.load(path.join(__dirname, '/data.js'), (err) => {
-  console.error(err);
-  fixtures.close((err) => {
-    console.error(err);
-  });
-});
+// fixtures.load(path.join(__dirname, '/data.js'), (err) => {
+//   console.error(err);
+//   fixtures.close((err) => {
+//     console.error(err);
+//   });
+// });

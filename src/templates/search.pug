@@ -53,4 +53,21 @@ block content
         img(src="/images/Chevron-down.svg", alt="" class="chevron-down")
     .button-wrap
       button.button SEARCH
-  section.seacrh_results
+  section.search_results
+    .search_topbar
+      p.show_map show map
+      .topbar_menu
+        include ../assets/img/order.svg
+        .radios
+          .radio
+            input(id="radio-1" name="radio" type="radio")
+            label(for="radio-1" class="radio-label") 
+            span by price
+          .radio
+            input(id="radio-2" name="radio" type="radio")
+            label(for="radio-2" class="radio-label") 
+            span by rating
+    .people
+      each elem in users
+       .user 
+        p= (elem.firstName + ' ' + elem.lastName + ' ' + elem.username)
