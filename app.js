@@ -7,15 +7,6 @@ const mongoose = require('mongoose');
 const path = require('path');
 const config = require('config');
 const beautifulUnique = require('mongoose-beautiful-unique-validation');
-// const { MongoClient } = require('mongodb');
-
-// const uri = 'mongodb+srv://Gemofort:123qwe@test-cluster-vvyof.mongodb.net/test?retryWrites=true&w=majority';
-// const client = new MongoClient(uri, { useNewUrlParser: true });
-// client.connect((err) => {
-//   const collection = client.db("test").collection("devices");
-//   console.log(err);
-//   client.close();
-// });
 
 const app = new Koa();
 const router = new Router();
@@ -27,11 +18,6 @@ mongoose.connect(config.get('databaseUrl'), {
   .catch((err) => {
     console.log(err);
   });
-
-// mongoose.connect(config.get('localdb'), {
-//   useNewUrlParser: true,
-//   useCreateIndex: true,
-// });
 
 mongoose.plugin(beautifulUnique);
 

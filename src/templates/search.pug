@@ -70,4 +70,19 @@ block content
     .people
       each elem in users
        .user 
-        p= (elem.firstName + ' ' + elem.lastName + ' ' + elem.username)
+        img(src="/images/Faruh.jpg", alt="")
+        .user-info
+          .user-name
+            p= elem.firstName + ' ' + elem.lastName
+          .small-info
+            .location
+              img(src="/images/Location.svg", alt="" class="location")
+              p Vancouver, Canada
+            .stack
+              p.stack-name= 'Stack: '
+              p.stack-list= elem.category
+              a(href="/personInfo/" + elem.id).more More...
+            .price
+              p.base-daily-rate Base Daily Rate:
+              p.price= '$ ' + elem.price + ' USD' 
+

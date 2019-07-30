@@ -69,12 +69,11 @@ $color2: #0AD69C
   width: 70%
   height: 100%
   display: flex
-  flex-direction: row
-  flex-wrap: wrap
-  justify-content: space-between
+  flex-direction: column
+  align-items: center
   .search_topbar
-    width: 100%
-    height: 30px
+    width: 90%
+    height: 50px
     padding: 0px 30px
     display: flex
     justify-content: space-between
@@ -155,7 +154,115 @@ $color2: #0AD69C
             line-height: 28px
             color: #000
 
-  ul
+  .people
+    height: 95%
+    width: 95%
     display: flex
     flex-direction: row
-    align-items: space-around
+    flex-wrap: wrap
+    justify-content: space-around
+    overflow-y: scroll
+    .user
+      height: 130px
+      width: 300px
+      display: flex
+      align-items: center
+      justify-content: space-around
+      background: $white
+      border: 1px solid rgba(237, 237, 237, 0.2)
+      box-sizing: border-box
+      box-shadow: -2px 9px 30px rgba(23, 31, 76, 0.02)
+      border-radius: 2px
+      margin-top: 20px
+      img 
+        height: 75px
+        width: 75px
+        object-fit: contain
+        border-radius: 50%
+      .user-info
+        height: 90%
+        width: 60%
+        display: flex
+        flex-direction: column
+        justify-content: space-evenly
+        .user-name
+          height: 25%
+          display: flex
+          align-items: flex-start
+          justify-content: flex-start
+          @include font('Roboto', 16px)
+          font-style: normal
+          font-weight: normal
+          line-height: 28px
+          letter-spacing: -0.046704px
+          color: $selectedMenu
+        .small-info 
+          height: 50%
+          display: flex
+          align-items: flex-start
+          justify-content: space-evenly
+          flex-direction: column
+          .location
+            display: flex
+            width: 100%
+            height: 20%
+            align-items: center
+            justify-content: flex-start
+            flex-direction: row
+            img 
+              width: 10px
+              height: 10px
+            p 
+              @include font('Roboto', 12px)
+              font-style: normal
+              font-weight: 300
+              line-height: 12px
+              letter-spacing: -0.046704px
+              color: $black
+          .stack
+            display: flex
+            width: 70%
+            height: 20%
+            align-items: center
+            justify-content: space-between
+            flex-direction: row
+            @include font('Roboto', 12px)
+            font-style: normal
+            font-weight: normal
+            line-height: 12px
+            letter-spacing: -0.046704px
+            .stack-name
+              color: $selectedMenu
+            .stack-list
+              color: $black
+            a 
+              text-decoration: none
+              color: $selectedMenuBorder
+          .price
+            display: flex
+            width: 100%
+            height: 20%
+            align-items: center
+            justify-content: flex-start
+            flex-direction: row
+            @include font('Roboto', 12px)
+            font-style: normal
+            font-weight: normal
+            line-height: 24px
+            letter-spacing: -0.046704px
+            .base-daily-rate
+              display: flex
+              flex-direction: row
+              width: 100%
+              color: $selectedMenu
+            .price
+              color: $black
+    &::-webkit-scrollbar
+      width: 8px
+      margin-left: -30px
+      &-track
+        background-color: #F5F7FA
+        border-radius: 50px
+      &-thumb
+        background-color: #E0E6F0
+        border-radius: 50px
