@@ -1088,7 +1088,7 @@ header .profile-settings a {
 .search_results .people .user .user-info .user-name {
   height: 25%;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
@@ -1097,6 +1097,11 @@ header .profile-settings a {
   line-height: 28px;
   letter-spacing: -0.046704px;
   color: #01134E;
+}
+
+.search_results .people .user .user-info .user-name svg {
+  height: 25px;
+  width: 25px;
 }
 
 .search_results .people .user .user-info .small-info {
