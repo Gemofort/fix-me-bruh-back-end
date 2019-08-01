@@ -10,7 +10,7 @@ mixin google-map-place(query, key)
     - query = query.replace(/ /g, "+");
   iframe(src=`https://google.com/maps/embed/v1/place?key=${key}&q=${query}`
          frameborder="0"
-         width="90%"
+         width="95%"
          height="100%")&attributes(attributes)
     - if (alt)
       | Your browser does not support iframes.
