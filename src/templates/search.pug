@@ -48,9 +48,8 @@ block content
         img(src="/images/Chevron-down.svg", alt="" class="chevron-down")
     .part
       p.title Period
-      .title-choose
-        p In progress
-        img(src="/images/Chevron-down.svg", alt="" class="chevron-down")
+      input(type="text" name="daterange" class="firstLast")
+      script(src="/javascript/date.js")
     .button-wrap
       button.button SEARCH
   section.search_results
@@ -91,4 +90,5 @@ block content
             .price
               p.base-daily-rate Base Daily Rate:
               p.price= '$ ' + elem.price + ' USD' 
+
 

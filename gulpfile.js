@@ -6,6 +6,11 @@ function copyFiles() {
     .pipe(gulp.dest('./public/images'));
 }
 
+function copyScripts() {
+  return gulp.src('./src/scripts/*')
+    .pipe(gulp.dest('./public/javascript'));
+}
+
 function style() {
   return gulp.src('./src/styles/sass/style.sass')
     .pipe(sass({ outputStyle: 'expanded' }))
@@ -14,3 +19,4 @@ function style() {
 
 exports.copyFiles = copyFiles;
 exports.style = style;
+exports.copyScripts = copyScripts;
