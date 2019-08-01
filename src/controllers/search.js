@@ -15,3 +15,7 @@ exports.sortPeople = async (ctx) => {
   }
   await ctx.render('search', { users });
 };
+
+exports.map = async (ctx) => {
+  await ctx.render('search_map');
+};

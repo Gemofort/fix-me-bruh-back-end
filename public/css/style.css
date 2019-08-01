@@ -968,6 +968,7 @@ header .profile-settings a {
   font-weight: 700;
   letter-spacing: 0.28px;
   text-transform: uppercase;
+  text-decoration: none;
   color: #01134E;
 }
 
@@ -1044,6 +1045,14 @@ header .profile-settings a {
   letter-spacing: -0.046704px;
   line-height: 28px;
   color: #000;
+}
+
+.search_results .search_main {
+  display: flex;
+  width: 100%;
+  height: 90%;
+  justify-content: center;
+  align-items: center;
 }
 
 .search_results .people {

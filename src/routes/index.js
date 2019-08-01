@@ -12,5 +12,6 @@ router.get('accInfo/:id', accInfo.accInfo);
 router.get('signIn', signIn.signIn);
 router.get('search', search.searchPeople);
 router.post('search', search.sortPeople);
+router.get('search/map', search.map);
 
 module.exports = router;

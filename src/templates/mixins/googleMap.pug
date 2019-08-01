@@ -1,0 +1,16 @@
+mixin google-map-place(query, key)
+  - if ("alt" in attributes)
+    - alt = attributes.alt;
+    - delete attributes.alt;
+  - else
+    - alt = true;
+  - if (query.length == 27 && query.indexOf(["+"]) < 1)
+    - query = "place_id:" + query
+  - else
+    - query = query.replace(/ /g, "+");
+  iframe(src=`https://google.com/maps/embed/v1/place?key=${key}&q=${query}`
+         frameborder="0"
+         width="90%"
+         height="100%")&attributes(attributes)
+    - if (alt)
+      | Your browser does not support iframes.
