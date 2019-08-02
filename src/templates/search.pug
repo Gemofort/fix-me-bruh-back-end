@@ -72,7 +72,7 @@ block content
         img(src="/images/Faruh.jpg", alt="")
         .user-info
           .user-name
-            p= elem.firstName + ' ' + elem.lastName
+            a(href="/personInfo/" + elem.id)= elem.firstName + ' ' + elem.lastName
             if elem.rating < 3 
               include ../assets/img/bronze.svg
             else if elem.rating >= 3 && elem.rating <= 6

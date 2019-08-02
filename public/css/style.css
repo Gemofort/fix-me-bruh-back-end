@@ -1099,6 +1099,10 @@ header .profile-settings a {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+
+.search_results .people .user .user-info .user-name a {
+  text-decoration: none;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-style: normal;
