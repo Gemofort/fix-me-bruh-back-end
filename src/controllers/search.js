@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require('../accounts/models/user');
 
 exports.searchPeople = async (ctx) => {
   const users = await User.find({});

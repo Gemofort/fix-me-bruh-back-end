@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require('../accounts/models/user');
 
 exports.mainpage = async (ctx) => {
   console.log(ctx.params.id);
