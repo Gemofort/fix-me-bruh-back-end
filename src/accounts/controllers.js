@@ -2,6 +2,7 @@ const passport = require('koa-passport');
 const config = require('config');
 const jwt = require('jwt-simple');
 const User = require('./models/user');
+const sendEmail = require('../utils/sendEmail');
 
 exports.signIn = async (ctx, next) => {
   await passport.authenticate('local', (err, user) => {
@@ -51,6 +52,19 @@ exports.postSignUp = async (ctx) => {
   await user.save();
 
 
+  ctx.body = {
+    success: true,
+  };
+};
+
+exports.testEmail = async (ctx) => {
+  await sendEmail(
+    'vanya6677@gmail.com',
+    'notifications@example.com',
+    'Hello email!',
+    'Text example',
+    '<p>Test data!</p>',
+  );
   ctx.body = {
     success: true,
   };

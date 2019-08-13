@@ -7,5 +7,6 @@ const router = new Router();
 router.post('/signIn', ctrl.signIn);
 router.get('/signUp', ctrl.postSignUp);
 router.get('/profile', passport.authenticate('jwt', { session: false }), ctrl.profile);
+router.get('/email', ctrl.testEmail);
 
 module.exports = router;

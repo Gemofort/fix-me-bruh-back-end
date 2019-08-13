@@ -8,4 +8,7 @@ module.exports = {
     },
   },
   jwtSecret: 'asjbqvwgnvjf123#%$',
+  sendGrid: {
+    apiKey: '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',
+  },
 };
