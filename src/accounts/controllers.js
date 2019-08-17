@@ -1,8 +1,34 @@
 const passport = require('koa-passport');
 const config = require('config');
 const jwt = require('jwt-simple');
+const mongoose = require('mongoose');
 const User = require('./models/user');
 const sendEmail = require('../utils/sendEmail');
+
+exports.users = async (ctx) => {
+  const users = await User.find({}).populate('category');
+  ctx.body = {
+    users,
+  };
+};
+
+exports.user = async (ctx) => {
+  // eslint-disable-next-line no-underscore-dangle
+  const user = await User.findOne(ctx.state.user._id);
+  console.log(user);
+  ctx.body = {
+    user,
+  };
+};
+
+exports.userById = async (ctx) => {
+  console.log(ctx.params);
+  const user = await User.findOne({ _id: ctx.params.id });
+  console.log(user);
+  ctx.body = {
+    user,
+  };
+};
 
 exports.signIn = async (ctx, next) => {
   await passport.authenticate('local', (err, user) => {
@@ -30,23 +56,17 @@ exports.profile = async (ctx) => {
   ctx.body = 'SUPER SECRET ONLY 4 USERS';
 };
 
-// exports.signUp = async (ctx) => {
-//   await ctx.render('sign_up');
-// };
-
-// exports.complete = async (ctx) => {
-//   await ctx.render('sign_up_comp');
-// };
-
 
 exports.postSignUp = async (ctx) => {
   const user = new User({
-    firstName: 'Vasya',
-    lastName: 'Pupkin',
+    firstName: 'Garen',
+    lastName: 'Demacia',
     title: 'Mr',
-    email: 'vasya@pupkin.com',
-    username: 'shiettalker',
-    password: 'kek1337',
+    email: 'garen@demacia.com',
+    username: 'qwerty2',
+    password: 'qwerty',
+    price: 1200,
+    category: mongoose.Types.ObjectId('5d401071de4b8204a812a425'),
   });
 
   await user.save();

@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 const config = require('config');
 const crypto = require('crypto');
+const Category = require('../../categories/models/category');
 
 const userSchema = new mongoose.Schema({
   firstName: String,
@@ -32,19 +33,19 @@ const userSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    default: '',
+    default: 'http://via.placeholder.com/320x320',
   },
   rating: {
     type: Number,
-    default: 0,
+    default: 3,
   },
   price: {
     type: Number,
-    default: 0,
+    default: 1000,
   },
   category: {
-    type: String,
-    default: '',
+    ref: Category,
+    type: mongoose.Schema.Types.ObjectId,
   },
 });
 
@@ -92,4 +93,5 @@ userSchema.methods.checkPassword = function (password) {
     'sha1',
   ).toString('base64') === this.passwordHash;
 };
+
 module.exports = mongoose.model('User', userSchema);

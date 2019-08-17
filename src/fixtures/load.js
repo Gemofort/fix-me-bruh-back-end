@@ -11,7 +11,7 @@
 //       email() {
 //         return `${this.firstName}.${this.lastName}@gmail.com`.toLowerCase();
 //       },
-//       username(){ 
+//       username(){
 //         return `${this.firstName}_${this.lastName}`
 //       },
 //       password: '123asd',
