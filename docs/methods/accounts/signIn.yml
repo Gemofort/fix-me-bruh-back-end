@@ -1,0 +1,43 @@
+post:
+  summary: Sign In
+  description: Sign in user and return user object with JWT token
+  tags:
+    - Accounts
+  security:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+            password:
+              type: string
+  responses:
+    "200":
+      content:
+        application/json:
+          description: User object with JWT token
+          schema:
+            type: object
+            properties:
+              token: 
+                type: string
+                description: created JWT token for user
+              user:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    description: URL for user photo
+                  fistName:
+                    type: string
+                    description: First name of user
+                  lastName:
+                    type: string
+                    description: Last name of user
+    404 :
+      $ref: "../../models/404.error.yml"
+    default:
+      $ref: "../../models/error.yml"

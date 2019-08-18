@@ -1,0 +1,27 @@
+post:
+  summary: Email
+  description: Send test email
+  tags:
+    - Accounts
+  security:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+  responses:
+    "200":
+      content:
+        application/json:
+          description: Sucess
+          schema:
+            type: object
+            properties:
+              success: 
+                type: boolean
+                description: email is sent
+    default:
+      $ref: "../../models/error.yml"

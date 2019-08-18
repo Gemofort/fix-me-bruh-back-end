@@ -1,0 +1,46 @@
+get:
+  summary: User
+  description: Get signed in user
+  tags:
+    - Accounts
+  security: 
+    - ApiKeyAuth: []
+  requestBody:
+  responses:
+    "200":
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user: 
+                type: object
+                properties:
+                  _id: 
+                    type: string
+                  firstName: 
+                    type: string
+                  lastName: 
+                    type: string
+                  title: 
+                    type: string
+                  email: 
+                    type: string
+                  username: 
+                    type: string
+                  passwordHash: 
+                    type: string
+                  salt: 
+                    type: string
+                  image: 
+                    type: string
+                  rating: 
+                    type: number
+                  price: 
+                    type: number
+                  category: 
+                    type: string
+    401 :
+      $ref: "../../models/401.error.yml"
+    default:
+      $ref: "../../models/error.yml"

@@ -15,16 +15,13 @@ exports.users = async (ctx) => {
 exports.user = async (ctx) => {
   // eslint-disable-next-line no-underscore-dangle
   const user = await User.findOne(ctx.state.user._id);
-  console.log(user);
   ctx.body = {
     user,
   };
 };
 
 exports.userById = async (ctx) => {
-  console.log(ctx.params);
   const user = await User.findOne({ _id: ctx.params.id });
-  console.log(user);
   ctx.body = {
     user,
   };
@@ -57,35 +54,46 @@ exports.profile = async (ctx) => {
 };
 
 
-exports.postSignUp = async (ctx) => {
-  const user = new User({
-    firstName: 'Garen',
-    lastName: 'Demacia',
-    title: 'Mr',
-    email: 'garen@demacia.com',
-    username: 'qwerty2',
-    password: 'qwerty',
-    price: 1200,
-    category: mongoose.Types.ObjectId('5d401071de4b8204a812a425'),
-  });
+exports.signUp = async (ctx) => {
+  try {
+    const user = new User({
+      firstName: ctx.request.body.firstName,
+      lastName: ctx.request.body.lastName,
+      title: 'Mr',
+      email: ctx.request.body.email,
+      username: ctx.request.body.email,
+      password: ctx.request.body.password,
+      price: 1200,
+      category: mongoose.Types.ObjectId('5d401071de4b8204a812a424'),
+    });
 
-  await user.save();
+    await user.save();
 
-
-  ctx.body = {
-    success: true,
-  };
+    ctx.body = {
+      success: true,
+    };
+  } catch (err) {
+    ctx.body = {
+      error: err,
+    };
+  }
 };
 
 exports.testEmail = async (ctx) => {
-  await sendEmail(
-    'vanya6677@gmail.com',
-    'notifications@example.com',
-    'Hello email!',
-    'Text example',
-    '<p>Test data!</p>',
-  );
-  ctx.body = {
-    success: true,
-  };
+  try {
+    await sendEmail(
+      ctx.request.body.email,
+      'notifications@example.com',
+      'Hello email!',
+      'Text example',
+      '<p>Test data!</p>',
+    );
+    ctx.body = {
+      success: true,
+    };
+  } catch (err) {
+    ctx.body = {
+      error: err,
+    };
+  }
 };
