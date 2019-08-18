@@ -20,6 +20,8 @@ paths:
     $ref: methods/accounts/userById.yml
   /accounts/email:
     $ref: methods/accounts/email.yml
+  /categories: 
+    $ref: methods/categories/categories.yml
 servers:
   - url: /
 components:
