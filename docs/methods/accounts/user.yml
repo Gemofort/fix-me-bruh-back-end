@@ -57,7 +57,7 @@ put:
         schema:
           type: object
           properties:
-            key:
+            keyYouWantToChange:
               type: string
   responses:
     "200":
