@@ -3,7 +3,7 @@ info:
   title: My Fixer API docs
   description: Made with ❤️️️️
   version: 0.0.1
-  host: localhost:8000
+  host: https://koa-demo.herokuapp.com
 tags:
   - name: Accounts
   - name: Categories

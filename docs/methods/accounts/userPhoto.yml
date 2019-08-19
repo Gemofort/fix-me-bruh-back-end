@@ -1,5 +1,6 @@
 put:
   summary: Update user photo
+  deprecated: true
   consumes:
     - multipart/form-data
   description: Update user photo and return new image link
