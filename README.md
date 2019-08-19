@@ -15,6 +15,12 @@ module.exports = {
   sendGrid: {
     apiKey: 'SendGrid api key',
   },
+  aws: {
+    accessKeyId: 's3 access key',
+    secretAccessKey: 's3 secret access key',
+    bucketName: 's3 bucket',
+    userPhotoFolder: 'folderName',
+  },
 };
 ```
 

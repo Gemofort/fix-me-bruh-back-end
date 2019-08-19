@@ -4,6 +4,7 @@ const jwt = require('jwt-simple');
 const mongoose = require('mongoose');
 const User = require('./models/user');
 const sendEmail = require('../utils/sendEmail');
+const uploadS3 = require('../utils/uploadS3');
 
 exports.users = async (ctx) => {
   const users = await User.find({}).populate('category');
@@ -15,6 +16,14 @@ exports.users = async (ctx) => {
 exports.user = async (ctx) => {
   // eslint-disable-next-line no-underscore-dangle
   const user = await User.findOne(ctx.state.user._id);
+  ctx.body = {
+    user,
+  };
+};
+
+exports.updateUser = async (ctx) => {
+  // eslint-disable-next-line no-underscore-dangle
+  const user = await User.findOneAndUpdate({ _id: ctx.state.user._id }, ctx.request.body);
   ctx.body = {
     user,
   };
@@ -96,4 +105,18 @@ exports.testEmail = async (ctx) => {
       error: err,
     };
   }
+};
+
+exports.updateUserPhoto = async (ctx) => {
+  console.log(ctx.request.files.image);
+  const image = await uploadS3(config.get('aws').userPhotoFolder, ctx.request.files.image);
+  // eslint-disable-next-line no-underscore-dangle
+  const user = await User.findOne(ctx.state.user._id);
+
+  user.image = image;
+  await user.save();
+
+  ctx.body = {
+    image,
+  };
 };

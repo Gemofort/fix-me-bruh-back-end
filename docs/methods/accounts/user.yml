@@ -5,7 +5,6 @@ get:
     - Accounts
   security: 
     - ApiKeyAuth: []
-  requestBody:
   responses:
     "200":
       content:

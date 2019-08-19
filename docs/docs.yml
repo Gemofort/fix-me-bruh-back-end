@@ -14,6 +14,8 @@ paths:
     $ref: methods/accounts/signUp.yml
   /accounts/user:
     $ref: methods/accounts/user.yml
+  /accounts/user/photo:
+    $ref: methods/accounts/userPhoto.yml
   /accounts/users:
     $ref: methods/accounts/users.yml
   /accounts/user/{userID}:

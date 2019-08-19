@@ -5,6 +5,7 @@ const beautifulUnique = require('mongoose-beautiful-unique-validation');
 mongoose.connect(config.get('databaseUrl'), {
   useNewUrlParser: true,
   useCreateIndex: true,
+  useFindAndModify: false,
 })
   .catch((err) => {
     console.log(err);
