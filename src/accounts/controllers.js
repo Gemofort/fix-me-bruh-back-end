@@ -23,7 +23,10 @@ exports.user = async (ctx) => {
 
 exports.updateUser = async (ctx) => {
   // eslint-disable-next-line no-underscore-dangle
-  const user = await User.findOneAndUpdate({ _id: ctx.state.user._id }, ctx.request.body);
+  const user = await User.findOne({ _id: ctx.state.user._id });
+  const keyValue = Object.keys(ctx.request.body)[0];
+  user[keyValue] = ctx.request.body[keyValue];
+  await user.save();
   ctx.body = {
     user,
   };
