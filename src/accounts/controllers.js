@@ -2,6 +2,7 @@ const passport = require('koa-passport');
 const config = require('config');
 const jwt = require('jwt-simple');
 const mongoose = require('mongoose');
+const { ObjectId } = require('mongoose').Types;
 const User = require('./models/user');
 const sendEmail = require('../utils/sendEmail');
 const uploadS3 = require('../utils/uploadS3');
@@ -11,6 +12,55 @@ exports.users = async (ctx) => {
   ctx.body = {
     users,
   };
+};
+
+exports.usersSort = async (ctx) => {
+  const givenObj = ctx.request.body;
+  console.log(givenObj);
+  const sortingObj = {};
+
+  // categories: ObjectId('wqefsjafdvaytsfdhgasd)
+  if (givenObj.category && givenObj.category !== 'All') {
+    sortingObj.category = ObjectId(givenObj.category);
+  } else if (givenObj.category === 'All') {
+    delete sortingObj.category;
+  }
+
+  // $or on firstName and lastName with RegExp
+  if (givenObj.fullName) {
+    sortingObj.$or = [
+      { firstName: { $regex: new RegExp(givenObj.fullName, 'i') } },
+      { lastName: { $regex: new RegExp(givenObj.fullName, 'i') } },
+    ];
+  }
+
+  // sorting by price, rating with descending and ascending order
+  if (givenObj.sort === '0' || !givenObj.sort) {
+    const users = await User.find(sortingObj).populate('category');
+    ctx.body = {
+      users,
+    };
+  } else if (givenObj.sort === '1') {
+    const users = await User.find(sortingObj).populate('category').sort('-price');
+    ctx.body = {
+      users,
+    };
+  } else if (givenObj.sort === '2') {
+    const users = await User.find(sortingObj).populate('category').sort('price');
+    ctx.body = {
+      users,
+    };
+  } else if (givenObj.sort === '3') {
+    const users = await User.find(sortingObj).populate('category').sort('-rating');
+    ctx.body = {
+      users,
+    };
+  } else if (givenObj.sort === '4') {
+    const users = await User.find(sortingObj).populate('category').sort('rating');
+    ctx.body = {
+      users,
+    };
+  }
 };
 
 exports.user = async (ctx) => {
@@ -68,6 +118,7 @@ exports.profile = async (ctx) => {
 
 exports.signUp = async (ctx) => {
   try {
+    console.log(ctx.request.body);
     const user = new User({
       firstName: ctx.request.body.firstName,
       lastName: ctx.request.body.lastName,
