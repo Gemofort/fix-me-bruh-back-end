@@ -13,9 +13,11 @@ put:
       image/png:
         schema:
           type: file
+          format: binary
       image/jpg:
         schema:
           type: file
+          format: binary
   responses:
     "200":
       content:

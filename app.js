@@ -18,7 +18,7 @@ app.use(koaSwagger({
   routePrefix: '/docs',
   hideTopbar: true,
   swaggerOptions: {
-    url: 'https://koa-demo.herokuapp.com/docs.yml',
+    url: 'http://localhost:8000/docs.yml',
   },
 }));
 
