@@ -3,7 +3,7 @@ info:
   title: My Fixer API docs
   description: Made with ❤️️️️
   version: 0.0.1
-  host: http://localhsot:8000
+  host: https://3.123.84.44
 tags:
   - name: Accounts
   - name: Categories
