@@ -94,4 +94,12 @@ userSchema.methods.checkPassword = function (password) {
   ).toString('base64') === this.passwordHash;
 };
 
+// userSchema.methods.updateUser = function (key, value) {
+//   console.log(key, value);
+//   if (Object.prototype.hasOwnProperty.call(this, key)) {
+//     this[key] = value;
+//   }
+//   console.log(this);
+// };
+
 module.exports = mongoose.model('User', userSchema);

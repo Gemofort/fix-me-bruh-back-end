@@ -18,7 +18,7 @@ app.use(koaSwagger({
   routePrefix: '/docs',
   hideTopbar: true,
   swaggerOptions: {
-    url: 'http://3.123.84.44/docs.yml',
+    url: 'http://localhost:8000/docs.yml',
   },
 }));
 
@@ -27,6 +27,28 @@ app.use(cors());
 app.use(bodyparser({
   multipart: true,
 }));
+
+app.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (err) {
+    console.log(err);
+    const errors = [];
+    Object.keys(err.errors).forEach((key) => {
+      if (err.errors[key].kind === 'Number') {
+        errors.push(`The cell ${key} must be a number.`);
+      } else if (err.errors[key].kind === 'unique') {
+        errors.push(`The field ${key} is already taken by this value. Please enter another value`);
+      } else {
+        errors.push(err.errors[key].message);
+      }
+    });
+    ctx.status = 500;
+    ctx.body = {
+      error: errors,
+    };
+  }
+});
 
 router.use('/categories', require('./src/categories/routes').routes());
 router.use('/accounts', require('./src/accounts/routes').routes());
