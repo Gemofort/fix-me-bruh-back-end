@@ -63,7 +63,6 @@ exports.updateUser = async (ctx) => {
       user,
     };
   } else {
-    console.log('here');
     ctx.body = {
       error: true,
     };
@@ -105,48 +104,36 @@ exports.profile = async (ctx) => {
 
 
 exports.signUp = async (ctx) => {
-  try {
-    console.log(ctx.request.body);
-    const user = new User({
-      firstName: ctx.request.body.firstName,
-      lastName: ctx.request.body.lastName,
-      title: 'Mr',
-      email: ctx.request.body.email,
-      username: ctx.request.body.email,
-      password: ctx.request.body.password,
-      price: 1200,
-      category: mongoose.Types.ObjectId('5d401071de4b8204a812a424'),
-    });
+  const user = new User({
+    firstName: ctx.request.body.firstName,
+    lastName: ctx.request.body.lastName,
+    title: 'Mr',
+    email: ctx.request.body.email,
+    username: ctx.request.body.email,
+    password: ctx.request.body.password,
+    price: 1200,
+    category: mongoose.Types.ObjectId('5d401071de4b8204a812a424'),
+  });
 
-    await user.save();
+  await user.save();
 
-    ctx.body = {
-      success: true,
-    };
-  } catch (err) {
-    ctx.body = {
-      error: err,
-    };
-  }
+  ctx.body = {
+    success: true,
+  };
 };
 
 exports.testEmail = async (ctx) => {
-  try {
-    await sendEmail(
-      ctx.request.body.email,
-      'notifications@example.com',
-      'Hello email!',
-      'Text example',
-      '<p>Test data!</p>',
-    );
-    ctx.body = {
-      success: true,
-    };
-  } catch (err) {
-    ctx.body = {
-      error: err,
-    };
-  }
+  await sendEmail(
+    ctx.request.body.email,
+    'notifications@example.com',
+    'Hello email!',
+    'Text example',
+    '<p>Test data!</p>',
+  );
+
+  ctx.body = {
+    success: true,
+  };
 };
 
 exports.updateUserPhoto = async (ctx) => {

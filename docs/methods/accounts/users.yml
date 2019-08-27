@@ -5,6 +5,12 @@ get:
     - Accounts
   security: 
     - ApiKeyAuth: []
+  parameters:
+    - in: query
+      name: search
+      schema:
+        type: string
+      description: ?search={ "query":"string", "category":"categoryID", "sort":"(-price/price/-rating/rating/nothing)" }
   responses:
     "200":
       content:
@@ -44,42 +50,5 @@ get:
                       type: string
     401 :
       $ref: "../../models/401.error.yml"
-    default:
-      $ref: "../../models/error.yml"
-
-post:
-  summary: Sort users(kinda)
-  consumes:
-    - multipart/form-data
-  description: sort -> 0 = none, 1 = -rating, 2 = rating, 3 = -price, 4 = price, category -> category id
-  tags:
-    - Accounts
-  security:
-    - ApiKeyAuth: []
-  requestBody:
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            fullname:
-              type: string
-            category:
-              type: string
-            sort:
-              type: string
-  responses:
-    "200":
-      content:
-        application/json:
-          description: Object with new image link
-          schema:
-            type: object
-            properties:
-              image: 
-                type: string
-                description: new image link
-    "404":
-      $ref:  "../../models/404.error.yml"
     default:
       $ref: "../../models/error.yml"
