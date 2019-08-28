@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint ./src/fixtures/users.js",
     "lint:fix": "eslint ./src/fixtures/users.js --fix",
-    "build:sass": "gulp style",
     "dev": "nodemon app.js",
     "start": "node app.js"
   },

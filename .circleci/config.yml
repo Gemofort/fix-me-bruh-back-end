@@ -18,9 +18,9 @@ jobs:
           paths:
             - 'node_modules'
       - run:
-          name: say mah name
+          name: Lint
           command: |
-            echo "Hello, Vanya"
+            npm run lint
 #   deploy:
 #     docker:
 #       - image: buildpack-deps:trusty
