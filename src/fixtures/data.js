@@ -1,8 +1,8 @@
 const id = require('pow-mongodb-fixtures').createObjectId;
 const mongoose = require('mongoose');
 const config = require('config');
-const User = require('../models/user');
-const Category = require('../models/category');
+const User = require('../accounts/models/user');
+// const Category = require('../categories/models/category');
 
 mongoose.connect(config.get('databaseUrl'), {
   useNewUrlParser: true,
