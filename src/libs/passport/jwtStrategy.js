@@ -19,5 +19,5 @@ module.exports = new JwtStrategy(opts, ((jwtPayload, done) => {
       return done(null, user);
     }
     return done(null, false);
-  }).select('-passwordHash -salt');
+  }).populate('category').select('-passwordHash -salt');
 }));

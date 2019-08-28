@@ -53,10 +53,16 @@ exports.user = async (ctx) => {
 exports.updateUser = async (ctx) => {
   // eslint-disable-next-line no-underscore-dangle
   const user = await User.findOne({ _id: ctx.state.user._id }).select('-passwordHash -salt');
+  console.log(ctx.request.body);
   const keyValue = Object.keys(ctx.request.body)[0];
 
   if (Object.prototype.hasOwnProperty.call(user.toObject(), keyValue)) {
-    user[keyValue] = ctx.request.body[keyValue];
+    if (keyValue === 'category') {
+      // eslint-disable-next-line no-underscore-dangle
+      user[keyValue] = ObjectId(ctx.request.body[keyValue]);
+    } else {
+      user[keyValue] = ctx.request.body[keyValue];
+    }
 
     await user.save();
     ctx.body = {
