@@ -76,7 +76,7 @@ exports.updateUser = async (ctx) => {
 };
 
 exports.userById = async (ctx) => {
-  const user = await User.findOne({ _id: ctx.params.id }).select('-passwordHash -salt');
+  const user = await User.findOne({ _id: ctx.params.id }).populate('category').select('-passwordHash -salt');
   ctx.body = {
     user,
   };
