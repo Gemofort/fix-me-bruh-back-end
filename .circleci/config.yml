@@ -25,8 +25,8 @@ jobs:
           name: Build docker image
           command: |
             docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
-            docker build -t $DOCKER_HUB_USERNAME/$DOCKER_HUB_REPO:latest .
-            docker push $DOCKER_HUB_USERNAME/$DOCKER_HUB_REPO:latest
+            docker build -t $DOCKER_HUB_USERNAME/$DOCKER_HUB_REPO:$CIRCLE_BUILD_NUM .
+            docker push $DOCKER_HUB_USERNAME/$DOCKER_HUB_REPO:$CIRCLE_BUILD_NUM
 #   deploy:
 #     docker:
 #       - image: buildpack-deps:trusty
