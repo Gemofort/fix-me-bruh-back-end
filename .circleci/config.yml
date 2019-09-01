@@ -29,7 +29,6 @@ jobs:
       - run: 
           name: Coverage report
           command: |
-            export NODE_ENV=production
             npm run coverage-report
       - run:
           name: Build docker image
