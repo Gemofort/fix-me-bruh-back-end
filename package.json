@@ -8,7 +8,9 @@
     "lint:fix": "eslint ./**/*.js --fix",
     "dev": "nodemon app.js",
     "start": "node app.js",
-    "test": "mocha ./src/tests/*.test.js --exit"
+    "test": "mocha ./src/tests/*.test.js --exit",
+    "coverage": "nyc npm run test",
+    "coverage-report": "nyc report --reporter=html"
   },
   "keywords": [],
   "author": "",

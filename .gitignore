@@ -1,3 +1,5 @@
 node_modules/
 config/default.js
 koa-demo.pem
+/.nyc_output
+/coverage

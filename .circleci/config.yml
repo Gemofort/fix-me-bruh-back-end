@@ -26,12 +26,24 @@ jobs:
           command: |
             export NODE_ENV=production
             npm run test
+      - run: 
+          name: Coverage
+          command: |
+            export NODE_ENV=production
+            npm run coverage
+      - run: 
+          name: Coverage report
+          command: |
+            export NODE_ENV=production
+            npm run coverage-report
       - run:
           name: Build docker image
           command: |
             docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
             docker build -t $DOCKER_HUB_USERNAME/$DOCKER_HUB_REPO:$CIRCLE_BUILD_NUM .
             docker push $DOCKER_HUB_USERNAME/$DOCKER_HUB_REPO:$CIRCLE_BUILD_NUM
+      - store_artifacts:
+          path: /coverage
 #   deploy:
 #     docker:
 #       - image: buildpack-deps:trusty
