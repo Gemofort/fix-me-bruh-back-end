@@ -22,11 +22,6 @@ jobs:
           command: |
             npm run lint
       - run: 
-          name: Tests
-          command: |
-            export NODE_ENV=production
-            npm run test
-      - run: 
           name: Coverage
           command: |
             export NODE_ENV=production
