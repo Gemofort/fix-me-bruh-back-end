@@ -57,4 +57,4 @@ app
   .use(router.routes())
   .use(router.allowedMethods());
 
-app.listen(config.get('port'));
+module.exports = app.listen(config.get('port'));

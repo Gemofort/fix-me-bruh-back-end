@@ -21,6 +21,11 @@ jobs:
           name: Lint
           command: |
             npm run lint
+      - run: 
+          name: Tests
+          command: |
+            export NODE_ENV=production
+            npm run test
       - run:
           name: Build docker image
           command: |

@@ -15,5 +15,6 @@ module.exports = {
     accessKeyId: process.env.accessKeyId,
     secretAccessKey: process.env.secretAccessKey,
     bucketName: process.env.bucketName,
+    userPhotoFolder: process.env.userPhotoFolder,
   },
 };

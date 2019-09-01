@@ -9,6 +9,7 @@ const uploadS3 = require('../utils/uploadS3');
 
 exports.users = async (ctx) => {
   let users = [];
+  // console.log(ctx.href);
 
   if (ctx.query.search) {
     const givenObj = JSON.parse(ctx.query.search);
@@ -53,7 +54,6 @@ exports.user = async (ctx) => {
 exports.updateUser = async (ctx) => {
   // eslint-disable-next-line no-underscore-dangle
   const user = await User.findOne({ _id: ctx.state.user._id }).select('-passwordHash -salt');
-  console.log(ctx.request.body);
   const keyValue = Object.keys(ctx.request.body)[0];
 
   if (Object.prototype.hasOwnProperty.call(user.toObject(), keyValue)) {
@@ -104,10 +104,6 @@ exports.signIn = async (ctx, next) => {
   })(ctx, next);
 };
 
-exports.profile = async (ctx) => {
-  ctx.body = 'SUPER SECRET ONLY 4 USERS';
-};
-
 
 exports.signUp = async (ctx) => {
   const user = new User({
@@ -131,7 +127,7 @@ exports.signUp = async (ctx) => {
 exports.testEmail = async (ctx) => {
   await sendEmail(
     ctx.request.body.email,
-    'notifications@example.com',
+    'notifications@example1.com',
     'Hello email!',
     'Text example',
     '<p>Test data!</p>',
