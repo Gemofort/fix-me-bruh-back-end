@@ -40,21 +40,21 @@ describe('Accounts', () => {
         done();
       });
   });
-  it('Should sign up user and return success', (done) => {
-    chai.request(app)
-      .post('/accounts/sign-up')
-      .send({
-        firstName: 'Dummy',
-        lastName: 'Dumm',
-        email: 'dummy@dumm.com',
-        password: 'qwerty',
-      })
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.have.property('success');
-        done();
-      });
-  });
+  // it('Should sign up user and return success', (done) => {
+  //   chai.request(app)
+  //     .post('/accounts/sign-up')
+  //     .send({
+  //       firstName: 'Dummy',
+  //       lastName: 'Dumm',
+  //       email: 'dummy@dumm.com',
+  //       password: 'qwerty',
+  //     })
+  //     .end((err, res) => {
+  //       res.should.have.status(200);
+  //       res.body.should.have.property('success');
+  //       done();
+  //     });
+  // });
   it('Should get logged in user', (done) => {
     chai.request(app)
       .get('/accounts/user')
