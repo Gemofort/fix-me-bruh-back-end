@@ -6,7 +6,7 @@ const config = require('config');
 
 sgMail.setApiKey(config.get('sendGrid').apiKey);
 
-module.exports = (to, from, subject, text, html) => {
+module.exports = async (to, from, subject, text, html) => {
   //   const msg = {
   //     to: 'test@example.com',
   //     from: 'test@example.com',
@@ -15,7 +15,7 @@ module.exports = (to, from, subject, text, html) => {
   //     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
   //   };
 
-  sgMail.send({
+  await sgMail.send({
     to,
     from,
     subject,

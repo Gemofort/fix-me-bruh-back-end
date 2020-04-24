@@ -9,19 +9,16 @@ const uploadS3 = require('../utils/uploadS3');
 
 exports.users = async (ctx) => {
   let users = [];
-  // console.log(ctx.href);
 
   if (ctx.query.search) {
     const givenObj = JSON.parse(ctx.query.search);
     // eslint-disable-next-line no-underscore-dangle
     const sortingObj = { _id: { $ne: ctx.state.user._id } };
 
-    // categories: ObjectId('wqefsjafdvaytsfdhgasd')
     if (givenObj.category && givenObj.category !== 'All') {
       sortingObj.category = ObjectId(givenObj.category);
     }
 
-    // $or on firstName and lastName with RegExp
     if (givenObj.field) {
       sortingObj.$or = [
         { firstName: { $regex: new RegExp(givenObj.field, 'i') } },
@@ -40,15 +37,11 @@ exports.users = async (ctx) => {
       .select('-passwordHash -salt')
       .sort('');
   }
-  ctx.body = {
-    users,
-  };
+  ctx.body = { users };
 };
 
 exports.user = async (ctx) => {
-  ctx.body = {
-    user: ctx.state.user,
-  };
+  ctx.body = { user: ctx.state.user };
 };
 
 exports.updateUser = async (ctx) => {
@@ -113,6 +106,10 @@ exports.signUp = async (ctx) => {
     email: body.email,
     password: body.password,
     phoneNumber: body.phoneNumber,
+    location: {
+      type: 'Point',
+      coordinates: [body.longitude, body.latitude],
+    },
     category: mongoose.Types.ObjectId('5d401071de4b8204a812a424'),
   });
 
@@ -146,6 +143,6 @@ exports.updateUserPhoto = async (ctx) => {
   await user.save();
 
   ctx.body = {
-    user,
+    image,
   };
 };

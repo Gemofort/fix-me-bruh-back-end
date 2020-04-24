@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema({
   phoneNumber: {
     type: String,
   },
+  location: {
+    type: { type: String },
+    coordinates: [],
+  },
   salt: {
     type: String,
   },
@@ -83,5 +87,7 @@ userSchema.methods.checkPassword = function (password) {
     'sha1',
   ).toString('base64') === this.passwordHash;
 };
+
+userSchema.index({ location: '2dsphere' });
 
 module.exports = mongoose.model('User', userSchema);

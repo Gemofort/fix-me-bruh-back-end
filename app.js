@@ -18,7 +18,7 @@ app.use(koaSwagger({
   routePrefix: '/docs',
   hideTopbar: true,
   swaggerOptions: {
-    url: 'http://3.123.84.44/docs.yml',
+    url: 'http://localhost:3000/docs.yml',
   },
 }));
 
@@ -50,7 +50,6 @@ app.use(async (ctx, next) => {
   }
 });
 
-// router.use('/categories', require('./src/categories/routes'));
 router.use('/accounts', require('./src/accounts/routes'));
 
 app
