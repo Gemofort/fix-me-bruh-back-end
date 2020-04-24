@@ -50,11 +50,12 @@ app.use(async (ctx, next) => {
   }
 });
 
-router.use('/categories', require('./src/categories/routes').routes());
-router.use('/accounts', require('./src/accounts/routes').routes());
+// router.use('/categories', require('./src/categories/routes'));
+router.use('/accounts', require('./src/accounts/routes'));
 
 app
-  .use(router.routes())
-  .use(router.allowedMethods());
+  .use(router.middleware());
+
+console.log(`Server started on ${config.get('port')} port`);
 
 module.exports = app.listen(config.get('port'));

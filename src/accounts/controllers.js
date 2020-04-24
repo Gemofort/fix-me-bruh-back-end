@@ -106,14 +106,13 @@ exports.signIn = async (ctx, next) => {
 
 
 exports.signUp = async (ctx) => {
+  const { body } = ctx.request;
   const user = new User({
-    firstName: ctx.request.body.firstName,
-    lastName: ctx.request.body.lastName,
-    title: 'Mr',
-    email: ctx.request.body.email,
-    username: ctx.request.body.email,
-    password: ctx.request.body.password,
-    price: 1200,
+    firstName: body.firstName,
+    lastName: body.lastName,
+    email: body.email,
+    password: body.password,
+    phoneNumber: body.phoneNumber,
     category: mongoose.Types.ObjectId('5d401071de4b8204a812a424'),
   });
 

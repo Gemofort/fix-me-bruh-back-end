@@ -1,11 +1,12 @@
-const Router = require('koa-router');
+const Router = require('koa-joi-router');
 const passport = require('koa-passport');
 const ctrl = require('./controllers');
+const validator = require('./validators');
 
-const router = new Router();
+const router = Router();
 
 router.post('/sign-in', ctrl.signIn);
-router.post('/sign-up', ctrl.signUp);
+router.post('/sign-up', validator.signUp, ctrl.signUp);
 router.post('/email', ctrl.testEmail);
 router.get('/users', passport.authenticate('jwt', { session: false }), ctrl.users);
 router.get('/user', passport.authenticate('jwt', { session: false }), ctrl.user);

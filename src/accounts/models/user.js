@@ -8,7 +8,6 @@ const Category = require('../../categories/models/category');
 const userSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
-  title: String,
   email: {
     type: String,
     unique: '{VALUE} is already exist!',
@@ -21,11 +20,10 @@ const userSchema = new mongoose.Schema({
       message: props => `${props.value} is not a valid email.`,
     },
   },
-  username: {
-    type: String,
-    unique: true,
-  },
   passwordHash: {
+    type: String,
+  },
+  phoneNumber: {
     type: String,
   },
   salt: {
@@ -34,14 +32,6 @@ const userSchema = new mongoose.Schema({
   image: {
     type: String,
     default: 'http://via.placeholder.com/320x320',
-  },
-  rating: {
-    type: Number,
-    default: 3,
-  },
-  price: {
-    type: Number,
-    default: 1000,
   },
   category: {
     ref: Category,
@@ -93,13 +83,5 @@ userSchema.methods.checkPassword = function (password) {
     'sha1',
   ).toString('base64') === this.passwordHash;
 };
-
-// userSchema.methods.updateUser = function (key, value) {
-//   console.log(key, value);
-//   if (Object.prototype.hasOwnProperty.call(this, key)) {
-//     this[key] = value;
-//   }
-//   console.log(this);
-// };
 
 module.exports = mongoose.model('User', userSchema);
