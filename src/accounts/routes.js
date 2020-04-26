@@ -11,10 +11,14 @@ router.post('/sign-up', validator.signUp, ctrl.signUp);
 // router.get('/users', passport.authenticate('jwt', { session: false }), ctrl.users);
 router.get('/user', validator.user,
   passport.authenticate('jwt', { session: false }), ctrl.user);
-// router.put('/user', passport.authenticate('jwt', { session: false }), ctrl.updateUser);
+router.put('/user', validator.user,
+  passport.authenticate('jwt', { session: false }), ctrl.updateUser);
 router.get('/user/:id', validator.user,
   passport.authenticate('jwt', { session: false }), ctrl.userById);
 router.put('/user/photo', validator.updateUserPhoto,
   passport.authenticate('jwt', { session: false }), ctrl.updateUserPhoto);
+
+router.post('/verify', validator.sendVerificationCode, ctrl.sendVerificationCode);
+router.post('/verify-code', validator.verifyCode, ctrl.verifyCode);
 
 module.exports = router;

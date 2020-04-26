@@ -3,6 +3,17 @@ const { validateFileTypeAndSize } = require('../helpers/fileValidate');
 
 const joi = Router.Joi;
 
+const userSchema = {
+  _id: joi.string().required(),
+  firstName: joi.string().required(),
+  lastName: joi.string().required(),
+  email: joi.string().email().required(),
+  phoneNumber: joi.string().required(),
+  location: joi.object().required(),
+  image: joi.string().required(),
+  category: joi.any(),
+};
+
 exports.signUp = {
   validate: {
     type: 'json',
@@ -25,20 +36,61 @@ exports.signUp = {
   },
 };
 
+exports.updateUser = {
+  validate: {
+    type: 'json',
+    body: {
+      firstName: joi.string().required(),
+      lastName: joi.string().required(),
+      longitude: joi.number().required(),
+      latitude: joi.number().required(),
+    },
+    output: {
+      200: {
+        body: userSchema,
+      },
+    },
+  },
+};
+
+exports.sendVerificationCode = {
+  validate: {
+    type: 'json',
+    body: {
+      number: joi.string().required(),
+    },
+    output: {
+      200: {
+        body: {
+          success: joi.bool().valid(true),
+        },
+      },
+    },
+  },
+};
+
+exports.verifyCode = {
+  validate: {
+    type: 'json',
+    body: {
+      number: joi.string().required(),
+      code: joi.string().required(),
+    },
+    output: {
+      200: {
+        body: {
+          success: joi.bool().valid(true),
+        },
+      },
+    },
+  },
+};
+
 exports.user = {
   validate: {
     output: {
       200: {
-        body: {
-          _id: joi.string().required(),
-          firstName: joi.string().required(),
-          lastName: joi.string().required(),
-          email: joi.string().email().required(),
-          phoneNumber: joi.string().required(),
-          location: joi.object().required(),
-          image: joi.string().required(),
-          category: joi.any(),
-        },
+        body: userSchema,
       },
     },
   },

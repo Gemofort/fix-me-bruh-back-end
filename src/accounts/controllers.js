@@ -3,6 +3,7 @@ const config = require('config');
 const jwt = require('jwt-simple');
 const mongoose = require('mongoose');
 const { ObjectId } = require('mongoose').Types;
+const twilioClient = require('twilio')(config.get('twilio.accountSid'), config.get('twilio.authToken'));
 const User = require('./models/user');
 const sendEmail = require('../utils/sendEmail');
 const uploadS3 = require('../utils/uploadS3');
@@ -45,27 +46,17 @@ exports.user = async (ctx) => {
 };
 
 exports.updateUser = async (ctx) => {
+  const { body } = ctx.request;
   // eslint-disable-next-line no-underscore-dangle
   const user = await User.findOne({ _id: ctx.state.user._id }).select('-passwordHash -salt');
-  const keyValue = Object.keys(ctx.request.body)[0];
 
-  if (Object.prototype.hasOwnProperty.call(user.toObject(), keyValue)) {
-    if (keyValue === 'category') {
-      // eslint-disable-next-line no-underscore-dangle
-      user[keyValue] = ObjectId(ctx.request.body[keyValue]);
-    } else {
-      user[keyValue] = ctx.request.body[keyValue];
-    }
+  user.firstName = body.firstName;
+  user.lastName = body.lastName;
+  user.location.coordinates = [body.longitude, body.latitude];
 
-    await user.save();
-    ctx.body = {
-      user,
-    };
-  } else {
-    ctx.body = {
-      error: true,
-    };
-  }
+  await user.save();
+
+  ctx.body = user;
 };
 
 exports.userById = async (ctx) => {
@@ -145,4 +136,31 @@ exports.updateUserPhoto = async (ctx) => {
   ctx.body = {
     image,
   };
+};
+
+exports.sendVerificationCode = async (ctx) => {
+  const { number } = ctx.request.body;
+
+  await twilioClient.verify.services(config.get('twilio.serviceSid'))
+    .verifications
+    .create({ to: number, channel: 'sms' })
+    .catch((err) => {
+      ctx.throw('400', err);
+    });
+
+  ctx.body = { success: true };
+};
+
+exports.verifyCode = async (ctx) => {
+  const { number, code } = ctx.request.body;
+
+  const verificationCheck = await twilioClient.verify.services(config.get('twilio.serviceSid'))
+    .verificationChecks
+    .create({ to: number, code });
+
+  if (!verificationCheck.valid) {
+    ctx.throw(400, 'This code is not valid, try another one.');
+  }
+
+  ctx.body = { success: true };
 };
