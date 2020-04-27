@@ -20,5 +20,7 @@ router.put('/user/photo', validator.updateUserPhoto,
 
 router.post('/verify', validator.sendVerificationCode, ctrl.sendVerificationCode);
 router.post('/verify-code', validator.verifyCode, ctrl.verifyCode);
+router.delete('/user/email/:id', validator.validateEmail,
+  passport.authenticate('jwt', { session: false }), ctrl.validateEmail);
 
 module.exports = router;

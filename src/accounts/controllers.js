@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const passport = require('koa-passport');
 const config = require('config');
 const jwt = require('jwt-simple');
@@ -5,8 +6,9 @@ const mongoose = require('mongoose');
 const { ObjectId } = require('mongoose').Types;
 const twilioClient = require('twilio')(config.get('twilio.accountSid'), config.get('twilio.authToken'));
 const User = require('./models/user');
-const sendEmail = require('../utils/sendEmail');
+const { sendEmail } = require('../utils/sendEmail');
 const uploadS3 = require('../utils/uploadS3');
+const EmailValidation = require('./models/emailValidationRequest');
 
 exports.users = async (ctx) => {
   let users = [];
@@ -104,11 +106,29 @@ exports.signUp = async (ctx) => {
     category: mongoose.Types.ObjectId('5d401071de4b8204a812a424'),
   });
 
-  await user.save();
+  const emailValidation = new EmailValidation({ user });
+
+  await Promise.all([user.save(), emailValidation.save()]);
+
+  await sendEmail(config.get('sendGrid.emailValidation'),
+    user.email, { link: `localhost:3000/accounts/user/email/${emailValidation._id}` });
 
   ctx.body = {
     success: true,
   };
+};
+
+exports.validateEmail = async (ctx) => {
+  const { id } = ctx.params;
+
+  const plainRequest = await EmailValidation.findOne({ _id: ObjectId(id) }).populate('user');
+
+  if (!plainRequest || plainRequest.user._id.toString() !== ctx.state.user._id.toString()) {
+    ctx.throw(400, 'Ivalid email validation request code');
+  }
+
+  await plainRequest.remove();
+  ctx.body = { success: true };
 };
 
 exports.testEmail = async (ctx) => {

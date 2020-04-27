@@ -128,3 +128,18 @@ exports.updateUserPhoto = {
     },
   },
 };
+
+exports.validateEmail = {
+  validate: {
+    params: {
+      id: joi.string().required(),
+    },
+    output: {
+      200: {
+        body: {
+          success: joi.bool().valid(true),
+        },
+      },
+    },
+  },
+};
