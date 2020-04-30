@@ -44,7 +44,9 @@ exports.users = async (ctx) => {
 };
 
 exports.user = async (ctx) => {
-  ctx.body = { user: ctx.state.user };
+  const user = await User.findOne({ _id: ctx.state.user.id }).populate('category').select('-passwordHash -salt -__v');
+  console.log(user);
+  ctx.body = { user: user.toObject() };
 };
 
 exports.updateUser = async (ctx) => {
@@ -63,9 +65,7 @@ exports.updateUser = async (ctx) => {
 
 exports.userById = async (ctx) => {
   const user = await User.findOne({ _id: ctx.params.id }).populate('category').select('-passwordHash -salt');
-  ctx.body = {
-    user,
-  };
+  ctx.body = { user };
 };
 
 exports.signIn = async (ctx, next) => {

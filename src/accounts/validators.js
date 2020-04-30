@@ -4,14 +4,14 @@ const { validateFileTypeAndSize } = require('../helpers/fileValidate');
 const joi = Router.Joi;
 
 const userSchema = {
-  _id: joi.string().required(),
+  _id: joi.any().required(),
   firstName: joi.string().required(),
   lastName: joi.string().required(),
   email: joi.string().email().required(),
   phoneNumber: joi.string().required(),
   location: joi.object().required(),
   image: joi.string().required(),
-  category: joi.any(),
+  category: joi.any().required(),
 };
 
 exports.signUp = {
@@ -90,7 +90,7 @@ exports.user = {
   validate: {
     output: {
       200: {
-        body: userSchema,
+        body: { user: userSchema },
       },
     },
   },
