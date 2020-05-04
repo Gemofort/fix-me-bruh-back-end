@@ -2,10 +2,11 @@
 const passport = require('koa-passport');
 const config = require('config');
 const jwt = require('jwt-simple');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const { ObjectId } = require('mongoose').Types;
 const twilioClient = require('twilio')(config.get('twilio.accountSid'), config.get('twilio.authToken'));
 const User = require('./models/user');
+const Category = require('../categories/models/category');
 const { sendEmail } = require('../utils/sendEmail');
 const uploadS3 = require('../utils/uploadS3');
 const EmailValidation = require('./models/emailValidationRequest');
@@ -93,6 +94,15 @@ exports.signIn = async (ctx, next) => {
 
 exports.signUp = async (ctx) => {
   const { body } = ctx.request;
+
+  const category = await Category.findOne({ name: { $regex: new RegExp(body.category, 'i') } });
+  let categoryId;
+
+  if (!category) {
+    const newCategory = await new Category({ name: body.category }).save();
+    categoryId = newCategory._id;
+  }
+
   const user = new User({
     firstName: body.firstName,
     lastName: body.lastName,
@@ -103,7 +113,7 @@ exports.signUp = async (ctx) => {
       type: 'Point',
       coordinates: [body.longitude, body.latitude],
     },
-    category: mongoose.Types.ObjectId('5d401071de4b8204a812a424'),
+    category: category ? category._id : categoryId,
   });
 
   const emailValidation = new EmailValidation({ user });
@@ -122,12 +132,16 @@ exports.validateEmail = async (ctx) => {
   const { id } = ctx.params;
 
   const plainRequest = await EmailValidation.findOne({ _id: ObjectId(id) }).populate('user');
+  const user = await User.findOne({ _id: ctx.state.user._id });
 
   if (!plainRequest || plainRequest.user._id.toString() !== ctx.state.user._id.toString()) {
     ctx.throw(400, 'Ivalid email validation request code');
   }
 
-  await plainRequest.remove();
+  user.emailVerified = true;
+
+  await Promise.all([user.save(), plainRequest.remove()]);
+
   ctx.body = { success: true };
 };
 
@@ -159,11 +173,11 @@ exports.updateUserPhoto = async (ctx) => {
 };
 
 exports.sendVerificationCode = async (ctx) => {
-  const { number } = ctx.request.body;
+  const { phoneNumber } = ctx.state.user;
 
   await twilioClient.verify.services(config.get('twilio.serviceSid'))
     .verifications
-    .create({ to: number, channel: 'sms' })
+    .create({ to: phoneNumber, channel: 'sms' })
     .catch((err) => {
       ctx.throw('400', err);
     });
@@ -172,15 +186,21 @@ exports.sendVerificationCode = async (ctx) => {
 };
 
 exports.verifyCode = async (ctx) => {
-  const { number, code } = ctx.request.body;
+  const { code } = ctx.request.body;
+  const { phoneNumber } = ctx.state.user;
 
   const verificationCheck = await twilioClient.verify.services(config.get('twilio.serviceSid'))
     .verificationChecks
-    .create({ to: number, code });
+    .create({ to: phoneNumber, code });
 
   if (!verificationCheck.valid) {
     ctx.throw(400, 'This code is not valid, try another one.');
   }
+
+  const user = await User.findOne({ _id: ctx.state.user._id });
+
+  user.phoneVerified = true;
+  await user.save();
 
   ctx.body = { success: true };
 };

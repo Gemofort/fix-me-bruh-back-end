@@ -41,6 +41,14 @@ const userSchema = new mongoose.Schema({
     ref: Category,
     type: mongoose.Schema.Types.ObjectId,
   },
+  emailVerified: {
+    type: Boolean,
+    default: false,
+  },
+  phoneVerified: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 userSchema.virtual('password')

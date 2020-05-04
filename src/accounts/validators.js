@@ -25,6 +25,7 @@ exports.signUp = {
       password: joi.string().min(6).required(),
       longitude: joi.number().required(),
       latitude: joi.number().required(),
+      category: joi.string().required(),
     },
     output: {
       200: {
@@ -56,9 +57,6 @@ exports.updateUser = {
 exports.sendVerificationCode = {
   validate: {
     type: 'json',
-    body: {
-      number: joi.string().required(),
-    },
     output: {
       200: {
         body: {
@@ -73,7 +71,6 @@ exports.verifyCode = {
   validate: {
     type: 'json',
     body: {
-      number: joi.string().required(),
       code: joi.string().required(),
     },
     output: {
