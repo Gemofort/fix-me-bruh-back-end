@@ -12,6 +12,8 @@ const userSchema = {
   location: joi.object().required(),
   image: joi.string().required(),
   category: joi.any().required(),
+  emailVerified: joi.bool().required(),
+  phoneVerified: joi.bool().required(),
 };
 
 exports.signUp = {
@@ -135,6 +137,24 @@ exports.validateEmail = {
       200: {
         body: {
           success: joi.bool().valid(true),
+        },
+      },
+    },
+  },
+};
+
+exports.search = {
+  validate: {
+    query: {
+      name: joi.string(),
+      category: joi.string(),
+      lat: joi.number(),
+      lng: joi.number(),
+    },
+    output: {
+      200: {
+        body: {
+          users: joi.array().items(userSchema),
         },
       },
     },

@@ -11,42 +11,52 @@ const { sendEmail } = require('../utils/sendEmail');
 const uploadS3 = require('../utils/uploadS3');
 const EmailValidation = require('./models/emailValidationRequest');
 
-exports.users = async (ctx) => {
-  let users = [];
+exports.search = async (ctx) => {
+  // let users = [];
+  const searchObj = {
+    _id: { $ne: ctx.state.user._id }, emailVerified: true, phoneVerified: true, $or: [],
+  };
 
-  if (ctx.query.search) {
-    const givenObj = JSON.parse(ctx.query.search);
-    // eslint-disable-next-line no-underscore-dangle
-    const sortingObj = { _id: { $ne: ctx.state.user._id } };
+  const {
+    name, category, lat, lng,
+  } = ctx.query;
 
-    if (givenObj.category && givenObj.category !== 'All') {
-      sortingObj.category = ObjectId(givenObj.category);
-    }
-
-    if (givenObj.field) {
-      sortingObj.$or = [
-        { firstName: { $regex: new RegExp(givenObj.field, 'i') } },
-        { lastName: { $regex: new RegExp(givenObj.field, 'i') } },
-      ];
-    }
-
-    users = await User.find(sortingObj)
-      .populate('category')
-      .select('-passwordHash -salt')
-      .sort(givenObj.sort);
-  } else {
-    // eslint-disable-next-line no-underscore-dangle
-    users = await User.find({ _id: { $ne: ctx.state.user._id } })
-      .populate('category')
-      .select('-passwordHash -salt')
-      .sort('');
+  if (name) {
+    searchObj.$or.push(
+      { firstName: { $regex: new RegExp(name, 'i') } },
+      { lastName: { $regex: new RegExp(name, 'i') } },
+    );
   }
+
+  if (lat && lng) {
+    searchObj.location = {};
+    searchObj.location.$near = {
+      $geometry: {
+        type: 'Point',
+        coordinates: [lng, lat],
+      },
+      $maxDistance: 100000,
+    };
+  }
+
+  if (category) {
+    const categories = await Category.find({ name: { $regex: new RegExp(category, 'i') } }).select('_id');
+    const categoryIds = categories.map(categ => categ._id);
+
+    searchObj.$or.push({ category: { $in: categoryIds } });
+  }
+
+  let users = await User.find(searchObj)
+    .populate({ path: 'category', select: '-__v' })
+    .select('-__v -passwordHash -salt');
+
+  users = users.map(user => user.toObject());
+
   ctx.body = { users };
 };
 
 exports.user = async (ctx) => {
   const user = await User.findOne({ _id: ctx.state.user.id }).populate('category').select('-passwordHash -salt -__v');
-  console.log(user);
   ctx.body = { user: user.toObject() };
 };
 
