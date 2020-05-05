@@ -6,6 +6,7 @@ mongoose.connect(config.get('databaseUrl'), {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
+  useUnifiedTopology: true,
 })
   .catch((err) => {
     console.log(err);

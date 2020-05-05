@@ -32,6 +32,7 @@ app.use(bodyparser({
 app.use(errorCatcherMiddleware);
 
 router.use('/accounts', require('./src/accounts/routes'));
+router.use('/categories', require('./src/categories/routes'));
 
 app
   .use(router.middleware());

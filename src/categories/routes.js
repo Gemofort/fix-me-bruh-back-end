@@ -1,8 +1,9 @@
-// const Router = require('koa-router');
-// const ctrl = require('./controllers');
+const Router = require('koa-joi-router');
+const ctrl = require('./controllers');
+const validators = require('./validators');
 
-// const router = new Router();
+const router = Router();
 
-// router.get('/', , ctrl.categories);
+router.get('/', validators.categories, ctrl.categories);
 
-// module.exports = router;
+module.exports = router;
