@@ -56,14 +56,42 @@ exports.search = async (ctx) => {
 };
 
 exports.user = async (ctx) => {
-  const user = await User.findOne({ _id: ctx.state.user.id }).populate('category').select('-passwordHash -salt -__v');
-  ctx.body = { user: user.toObject() };
+  const plainUser = await (await User.findOne({ _id: ctx.state.user.id }).populate('category').select('-passwordHash -salt -__v')).toObject();
+
+  const emailValidationRequest = await EmailValidation.findOne({ user: ObjectId(plainUser._id) }).select('-__v');
+
+  const resp = { user: { ...plainUser } };
+
+  if (emailValidationRequest) {
+    resp.user.emailValidationRequest = emailValidationRequest;
+  }
+
+  ctx.body = resp;
 };
 
 exports.updateUser = async (ctx) => {
   const { body } = ctx.request;
   // eslint-disable-next-line no-underscore-dangle
-  const user = await User.findOne({ _id: ctx.state.user._id }).select('-passwordHash -salt');
+  const user = await User.findOne({ _id: ctx.state.user._id }).select('-passwordHash -salt').select('-__v');
+
+  if (body.email && body.email !== user.email) {
+    user.emailVerified = false;
+
+    const emailValidationRequest = await EmailValidation.findOne({ user: ObjectId(user._id) });
+    const emailValidation = new EmailValidation({ user });
+
+    await Promise.all([emailValidationRequest.remove(), emailValidation.save()]);
+
+    await sendEmail(config.get('sendGrid.emailValidation'),
+      user.email, { link: `localhost:3000/accounts/user/email/${emailValidation._id}` });
+
+    user.email = body.email;
+  }
+
+  if (body.phoneNumber && body.email !== user.phoneNumber) {
+    user.phoneVerified = false;
+    user.phone = body.phone;
+  }
 
   user.firstName = body.firstName;
   user.lastName = body.lastName;
@@ -71,11 +99,25 @@ exports.updateUser = async (ctx) => {
 
   await user.save();
 
-  ctx.body = user;
+  ctx.body = { user: user.toObject() };
+};
+
+exports.resendEmailVerification = async (ctx) => {
+  // eslint-disable-next-line max-len
+  const emailValidationRequest = await EmailValidation.findOne({ user: ObjectId(ctx.state.user._id) });
+
+  if (emailValidationRequest) {
+    await sendEmail(config.get('sendGrid.emailValidation'),
+      ctx.state.user.email, { link: `localhost:3000/accounts/user/email/${emailValidationRequest._id}` });
+
+    ctx.body = { success: true };
+  } else {
+    ctx.throw(400, 'No email validation request found');
+  }
 };
 
 exports.userById = async (ctx) => {
-  const user = await User.findOne({ _id: ctx.params.id }).populate('category').select('-passwordHash -salt');
+  const user = await User.findOne({ _id: ctx.params.id }).populate('category').select('-passwordHash -salt -__v');
   ctx.body = { user };
 };
 
@@ -153,20 +195,6 @@ exports.validateEmail = async (ctx) => {
   await Promise.all([user.save(), plainRequest.remove()]);
 
   ctx.body = { success: true };
-};
-
-exports.testEmail = async (ctx) => {
-  await sendEmail(
-    ctx.request.body.email,
-    'notifications@example1.com',
-    'Hello email!',
-    'Text example',
-    '<p>Test data!</p>',
-  );
-
-  ctx.body = {
-    success: true,
-  };
 };
 
 exports.updateUserPhoto = async (ctx) => {

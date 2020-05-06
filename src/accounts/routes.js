@@ -7,12 +7,12 @@ const router = Router();
 
 router.post('/sign-in', validator.signIn, ctrl.signIn);
 router.post('/sign-up', validator.signUp, ctrl.signUp);
-// router.post('/email', ctrl.testEmail);
+
 router.get('/search', validator.search,
   passport.authenticate('jwt', { session: false }), ctrl.search);
 router.get('/user', validator.user,
   passport.authenticate('jwt', { session: false }), ctrl.user);
-router.put('/user', validator.user,
+router.put('/user', validator.userUpdate,
   passport.authenticate('jwt', { session: false }), ctrl.updateUser);
 router.get('/user/:id', validator.user,
   passport.authenticate('jwt', { session: false }), ctrl.userById);
@@ -25,5 +25,7 @@ router.put('/verify-code', validator.verifyCode,
   passport.authenticate('jwt', { session: false }), ctrl.verifyCode);
 router.delete('/user/email/:id', validator.validateEmail,
   passport.authenticate('jwt', { session: false }), ctrl.validateEmail);
+router.post('/user/email', validator.resendEmailVerification,
+  passport.authenticate('jwt', { session: false }), ctrl.resendEmailVerification);
 
 module.exports = router;

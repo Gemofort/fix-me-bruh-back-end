@@ -18,11 +18,17 @@ paths:
     $ref: methods/accounts/userPhoto.yml
   /accounts/users:
     $ref: methods/accounts/users.yml
-  /accounts/user/{userID}:
+  /accounts/user/{id}:
     $ref: methods/accounts/userById.yml
-  /accounts/email:
-    $ref: methods/accounts/email.yml
-  /categories: 
+  /accounts/verify:
+    $ref: methods/accounts/verify.yml
+  /accounts/verify-code:
+    $ref: methods/accounts/verifyCode.yml
+  /accounts/user/email/{id}: 
+    $ref: methods/accounts/verifyEmail.yml
+  /accounts/user/email: 
+    $ref: methods/accounts/resendEmail.yml
+  /categories:
     $ref: methods/categories/categories.yml
 servers:
   - url: /

@@ -14,6 +14,7 @@ const userSchema = {
   category: joi.any().required(),
   emailVerified: joi.bool().required(),
   phoneVerified: joi.bool().required(),
+  emailValidationRequest: joi.any(),
 };
 
 exports.signUp = {
@@ -95,6 +96,25 @@ exports.user = {
   },
 };
 
+exports.userUpdate = {
+  validate: {
+    type: 'json',
+    body: {
+      firstName: joi.string().required(),
+      lastName: joi.string().required(),
+      longitude: joi.number().required(),
+      latitude: joi.number().required(),
+      email: joi.string().email(),
+      phoneNumber: joi.string(),
+    },
+    output: {
+      200: {
+        body: { user: userSchema },
+      },
+    },
+  },
+};
+
 exports.signIn = {
   validate: {
     output: {
@@ -133,6 +153,18 @@ exports.validateEmail = {
     params: {
       id: joi.string().required(),
     },
+    output: {
+      200: {
+        body: {
+          success: joi.bool().valid(true),
+        },
+      },
+    },
+  },
+};
+
+exports.resendEmailVerification = {
+  validate: {
     output: {
       200: {
         body: {

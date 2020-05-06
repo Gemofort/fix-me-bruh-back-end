@@ -1,0 +1,26 @@
+post:
+  summary: User
+  description: Resend verification email to logged in user
+  tags:
+    - Accounts
+  security: 
+    - ApiKeyAuth: []
+  responses:
+    "200":
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user: 
+                type: object
+                properties:
+                  success: 
+                    type: boolean
+                  
+    401 :
+      $ref: "../../models/401.error.yml"
+    404: 
+      $ref: "../../models/404.error.yml"
+    default:
+      $ref: "../../models/error.yml"

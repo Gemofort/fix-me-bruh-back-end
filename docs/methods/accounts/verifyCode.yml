@@ -1,0 +1,25 @@
+put:
+  summary: Verify phone with code
+  description: Verify code which was sent to user's phone number
+  tags:
+    - Accounts
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            code:
+              type: string
+  security:
+    "200":
+      content:
+        application/json:
+          description: Success
+          schema:
+            type: object
+            properties:
+              success: 
+                type: boolean
+    default:
+      $ref: "../../models/error.yml"

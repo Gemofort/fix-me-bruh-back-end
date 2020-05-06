@@ -1,16 +1,31 @@
 get:
   summary: Users
-  description: Get all users in database
+  description: Get all users by keywords
   tags:
     - Accounts
   security: 
     - ApiKeyAuth: []
   parameters:
     - in: query
-      name: search
+      name: name
       schema:
         type: string
-      description: ?search={ "query":"string", "category":"categoryID", "sort":"(-price/price/-rating/rating/nothing)" }
+      description: Optional
+    - in: query
+      name: category
+      schema:
+        type: string
+      description: Optional
+    - in: query
+      name: longitude
+      schema:
+        type: number
+      description: Optional, but comes with latitude
+    - in: query
+      name: latitude
+      schema:
+        type: number
+      description: Optional, but comes with longitude
   responses:
     "200":
       content:

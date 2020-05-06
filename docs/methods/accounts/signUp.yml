@@ -18,6 +18,14 @@ post:
               type: string
             password:
               type: string
+            phoneNumber:
+              type: string
+            longitude:
+              type: number
+            latitude:
+              type: number
+            category:
+              type: string
   responses:
     "200":
       content:
@@ -28,7 +36,7 @@ post:
               success: 
                 type: boolean
                 description: true
-    "404" :
-      $ref: "../../models/404.error.yml"
+    "400" :
+      $ref: "../../models/400.error.yml"
     default:
-      $ref: "../../models/error.yml"
+      $ref: "../../models/400.error.yml"

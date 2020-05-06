@@ -1,23 +1,19 @@
 put:
   summary: Update user photo
-  deprecated: true
-  consumes:
-    - multipart/form-data
   description: Update user photo and return new image link
   tags:
     - Accounts
   security:
     - ApiKeyAuth: []
   requestBody:
-    content:
-      image/png:
-        schema:
-          type: file
-          format: binary
-      image/jpg:
-        schema:
-          type: file
-          format: binary
+    content: 
+      multipart/form-data: 
+        schema:            
+          type: object
+          properties:      
+            image: 
+              type: string
+              format: binary
   responses:
     "200":
       content:
