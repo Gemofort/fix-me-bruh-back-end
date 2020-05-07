@@ -59,7 +59,6 @@ exports.updateUser = {
 
 exports.sendVerificationCode = {
   validate: {
-    type: 'json',
     output: {
       200: {
         body: {

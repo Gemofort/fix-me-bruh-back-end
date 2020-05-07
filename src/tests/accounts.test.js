@@ -13,8 +13,8 @@ describe('Accounts', () => {
     chai.request(app)
       .post('/accounts/sign-in')
       .send({
-        email: 'lucian@demacia.com',
-        password: 'qwerty',
+        email: 'kek@gmail.com',
+        password: '123qwe',
       })
       .end((err, res) => {
         res.should.have.status(200);
@@ -30,8 +30,8 @@ describe('Accounts', () => {
     chai.request(app)
       .post('/accounts/sign-in')
       .send({
-        email: 'lucian@demacia.com',
-        password: 'qwerty',
+        email: 'vanya6677@gmail.com',
+        password: '123qwe',
       })
       .end((err, res) => {
         res.should.have.status(200);
@@ -44,10 +44,14 @@ describe('Accounts', () => {
     chai.request(app)
       .post('/accounts/sign-up')
       .send({
-        firstName: 'Dummy',
-        lastName: 'Dumm',
-        email: 'dummy@dumm.com',
-        password: 'qwerty',
+        firstName: 'Ivan',
+        lastName: 'TitleExample',
+        email: 'vanya66777@gmail.com',
+        password: '123qwe',
+        phoneNumber: '+380636913660',
+        longitude: 29.911230,
+        latitude: 50.074718,
+        category: 'xd',
       })
       .end((err, res) => {
         res.should.have.status(200);
@@ -62,7 +66,7 @@ describe('Accounts', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.have.property('user').that.has.keys(['firstName', 'email', 'lastName',
-          'username', 'title', 'price', 'category', 'rating', '__v', '_id', 'image']);
+          'phoneNumber', 'location', '_id', 'category', 'emailVerified', 'phoneVerified', 'image', 'emailValidationRequest']);
         done();
       });
   });
@@ -70,29 +74,22 @@ describe('Accounts', () => {
     chai.request(app)
       .put('/accounts/user')
       .set('Authorization', `JWT ${token}`)
-      .send({ firstName: 'Luciano' })
+      .send({
+        firstName: 'asd',
+        lastName: 'asd',
+        longitude: 29.911230,
+        latitude: 50.074718,
+      })
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.have.property('user').that.has.keys(['firstName', 'email', 'lastName',
-          'username', 'title', 'price', 'category', 'rating', '__v', '_id', 'image']);
-        done();
-      });
-  });
-  it('Should update logged in user category', (done) => {
-    chai.request(app)
-      .put('/accounts/user')
-      .set('Authorization', `JWT ${token}`)
-      .send({ category: '5d401071de4b8204a812a424' })
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.have.property('user').that.has.keys(['firstName', 'email', 'lastName',
-          'username', 'title', 'price', 'category', 'rating', '__v', '_id', 'image']);
+          'phoneNumber', 'location', '_id', 'category', 'emailVerified', 'phoneVerified', 'image']);
         done();
       });
   });
   it('Should return all users', (done) => {
     chai.request(app)
-      .get('/accounts/users')
+      .get('/accounts/search')
       .set('Authorization', `JWT ${token}`)
       .end((err, res) => {
         res.should.have.status(200);
@@ -102,7 +99,7 @@ describe('Accounts', () => {
   });
   it('Should return all users by query, category ID, sorting by price or rating', (done) => {
     chai.request(app)
-      .get('/accounts/users?search={%22field%22:%22Vas%22,%22category%22:%225d401071de4b8204a812a424%22,%22sort%22:%22price%22}')
+      .get('/accounts/search?name=I&lat=50.074718&lng=29.81123&category=x')
       .set('Authorization', `JWT ${token}`)
       .end((err, res) => {
         res.should.have.status(200);
@@ -112,22 +109,12 @@ describe('Accounts', () => {
   });
   it('Should return user by id if you\'re logged in', (done) => {
     chai.request(app)
-      .get('/accounts/user/5d56e1f2035d681960f8d6fc')
+      .get('/accounts/user/5eb0aaf9973de50e8a04ea00')
       .set('Authorization', `JWT ${token}`)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.have.property('user').that.has.keys(['firstName', 'email', 'lastName',
-          'username', 'title', 'price', 'category', 'rating', '__v', '_id', 'image']);
-        done();
-      });
-  });
-  it('Should send test email', (done) => {
-    chai.request(app)
-      .post('/accounts/email')
-      .send({ email: 'vanya6677@gmail.com' })
-      .end((end, res) => {
-        res.should.have.status(200);
-        res.body.should.have.property('success');
+          'phoneNumber', 'location', '_id', 'category', 'emailVerified', 'phoneVerified', 'image']);
         done();
       });
   });
@@ -138,8 +125,27 @@ describe('Accounts', () => {
       .attach('image', fs.readFileSync('something.jpg'), 'something.jpg')
       .end((end, res) => {
         res.should.have.status(200);
-        res.body.should.have.property('user').that.has.keys(['firstName', 'email', 'lastName',
-          'username', 'title', 'price', 'category', 'rating', '__v', '_id', 'image']);
+        res.body.should.have.property('image');
+        done();
+      });
+  });
+  it('Should send Veriification code to phone number', (done) => {
+    chai.request(app)
+      .post('/accounts/verify')
+      .set('Authorization', `JWT ${token}`)
+      .end((end, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('success');
+        done();
+      });
+  });
+  it('Should resend Verification email', (done) => {
+    chai.request(app)
+      .post('/accounts/user/email')
+      .set('Authorization', `JWT ${token}`)
+      .end((end, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('success');
         done();
       });
   });

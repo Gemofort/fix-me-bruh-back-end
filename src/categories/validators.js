@@ -4,7 +4,6 @@ const joi = Router.Joi;
 
 exports.categories = {
   validate: {
-    type: 'json',
     output: {
       200: {
         body: {

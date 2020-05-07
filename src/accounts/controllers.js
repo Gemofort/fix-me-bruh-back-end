@@ -46,6 +46,10 @@ exports.search = async (ctx) => {
     searchObj.$or.push({ category: { $in: categoryIds } });
   }
 
+  if (!searchObj.$or.length) {
+    delete searchObj.$or;
+  }
+
   let users = await User.find(searchObj)
     .populate({ path: 'category', select: '-__v' })
     .select('-__v -passwordHash -salt');
@@ -117,8 +121,8 @@ exports.resendEmailVerification = async (ctx) => {
 };
 
 exports.userById = async (ctx) => {
-  const user = await User.findOne({ _id: ctx.params.id }).populate('category').select('-passwordHash -salt -__v');
-  ctx.body = { user };
+  const user = await User.findOne({ _id: ObjectId(ctx.params.id) }).populate('category').select('-passwordHash -salt -__v');
+  ctx.body = { user: user.toObject() };
 };
 
 exports.signIn = async (ctx, next) => {
@@ -200,7 +204,7 @@ exports.validateEmail = async (ctx) => {
 exports.updateUserPhoto = async (ctx) => {
   const image = await uploadS3(config.get('aws').userPhotoFolder, ctx.request.files.image);
   // eslint-disable-next-line no-underscore-dangle
-  const user = await User.findOne(ctx.state.user._id).select('-passwordHash -salt');
+  const user = await User.findOne({ _id: ctx.state.user._id }).select('-passwordHash -salt');
 
   user.image = image;
   await user.save();
