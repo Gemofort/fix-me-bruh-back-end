@@ -1,27 +1,38 @@
-# HW9:
+# Fix me bruh:
 
 ## config example:
 ```javascript
 module.exports = {
-  port: 8000,
-  databaseUrl: 'MongoDB URI',
+  server: {
+    baseUrl: 'localhost:3000',
+  },
+  port: 3000,
+  databaseUrl: your database url,
   crypto: {
     hash: {
       length: 100,
       iterations: 10000,
     },
   },
-  jwtSecret: 'randomText',
+  jwtSecret: 'jwtsecret',
   sendGrid: {
-    apiKey: 'SendGrid api key',
+    baseEmail: 'no-reply@fix-me-bruh.com',
+    apiKey: your sendgrid api key,
+    emailValidation: your sendgrid email validation template id,
   },
   aws: {
-    accessKeyId: 's3 access key',
-    secretAccessKey: 's3 secret access key',
-    bucketName: 's3 bucket',
-    userPhotoFolder: 'folderName',
+    accessKeyId: your aws access key,
+    secretAccessKey: your aws secret access key,
+    bucketName: 'fix-me-bruh',
+    userPhotoFolder: 'users',
+  },
+  twilio: {
+    accountSid: twilio account sid,
+    authToken: twilio auth token,
+    serviceSid: twilio service sid,
   },
 };
+
 ```
 
 ### install dependecies
