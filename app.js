@@ -19,7 +19,7 @@ app.use(koaSwagger({
   routePrefix: '/docs',
   hideTopbar: true,
   swaggerOptions: {
-    url: 'http://localhost:3000/docs.yml',
+    url: `${config.get('server.baseUrl')}/docs.yml`,
   },
 }));
 
