@@ -10,6 +10,7 @@ const Category = require('../categories/models/category');
 const { sendEmail } = require('../utils/sendEmail');
 const uploadS3 = require('../utils/uploadS3');
 const EmailValidation = require('./models/emailValidationRequest');
+const ResetPassword = require('../accounts/models/resetPassword');
 
 exports.search = async (ctx) => {
   // let users = [];
@@ -243,6 +244,42 @@ exports.verifyCode = async (ctx) => {
 
   user.phoneVerified = true;
   await user.save();
+
+  ctx.body = { success: true };
+};
+
+exports.resetPasswordRequest = async (ctx) => {
+  const { email } = ctx.request.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    ctx.throw(404, 'User with such email does not exist');
+  }
+
+  const request = await new ResetPassword({ user }).save();
+  await sendEmail(config.get('sendGrid.resetPassword'),
+    user.email, { link: `localhost:3000/accounts/user/reset-password/${request._id}` });
+
+  ctx.body = { success: true };
+};
+
+exports.resetPassword = async (ctx) => {
+  const { id } = ctx.params;
+  const user = await User.findOne({ email: ctx.request.body.email });
+  const request = await ResetPassword.findOne({ _id: ObjectId(id) });
+
+  if (!request) {
+    ctx.throw(404, 'Request with such id does not exist');
+  }
+
+  if (!user) {
+    ctx.throw(404, 'User with such email does not exist');
+  }
+
+  user.password = ctx.request.body.password;
+
+  await Promise.all([user.save(), request.remove()]);
 
   ctx.body = { success: true };
 };

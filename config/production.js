@@ -15,6 +15,7 @@ module.exports = {
     baseEmail: process.env.SENDGRID_BASE_EMAIL,
     apiKey: process.env.SENDGRID_API_KEY,
     emailValidation: process.env.SENDGRID_EMAILVAL_TEMPLATE,
+    resetPassword: process.env.SENDGRID_RESPASS_TEMPLATE,
   },
   aws: {
     accessKeyId: process.env.AWS_ACCESS_KEY,

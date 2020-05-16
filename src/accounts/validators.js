@@ -174,6 +174,43 @@ exports.resendEmailVerification = {
   },
 };
 
+exports.resetPasswordRequest = {
+  validate: {
+    type: 'json',
+    body: {
+      email: joi.string().email(),
+    },
+    output: {
+      200: {
+        body: {
+          success: joi.bool().valid(true),
+        },
+      },
+    },
+  },
+};
+
+exports.resetPassword = {
+  validate: {
+    type: 'json',
+    params: {
+      id: joi.string().required(),
+    },
+    body: {
+      email: joi.string().email(),
+      password: joi.string().min(6),
+      confirmPassword: joi.string().valid(joi.ref('password')).required(),
+    },
+    output: {
+      200: {
+        body: {
+          success: joi.bool().valid(true),
+        },
+      },
+    },
+  },
+};
+
 exports.search = {
   validate: {
     query: {

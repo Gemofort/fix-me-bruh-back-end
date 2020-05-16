@@ -28,4 +28,9 @@ router.delete('/user/email/:id', validator.validateEmail,
 router.post('/user/email', validator.resendEmailVerification,
   passport.authenticate('jwt', { session: false }), ctrl.resendEmailVerification);
 
+router.post('/user/reset-password', validator.resetPasswordRequest,
+  ctrl.resetPasswordRequest);
+router.put('/user/reset-password/:id', validator.resetPassword,
+  ctrl.resetPassword);
+
 module.exports = router;

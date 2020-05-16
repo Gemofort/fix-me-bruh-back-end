@@ -28,6 +28,10 @@ paths:
     $ref: methods/accounts/verifyEmail.yml
   /accounts/user/email: 
     $ref: methods/accounts/resendEmail.yml
+  /accounts/user/reset-password: 
+    $ref: methods/accounts/resetPasswordRequest.yml
+  /accounts/user/reset-password/{id}: 
+    $ref: methods/accounts/resetPassword.yml
   /categories:
     $ref: methods/categories/categories.yml
 servers:
