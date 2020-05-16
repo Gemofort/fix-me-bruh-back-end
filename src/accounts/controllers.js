@@ -283,3 +283,11 @@ exports.resetPassword = async (ctx) => {
 
   ctx.body = { success: true };
 };
+
+exports.deleteUser = async (ctx) => {
+  const user = await User.findOne({ _id: ctx.state.user._id });
+
+  await user.remove();
+
+  ctx.body = { success: true };
+};

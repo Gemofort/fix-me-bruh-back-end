@@ -228,3 +228,15 @@ exports.search = {
     },
   },
 };
+
+exports.deleteUser = {
+  validate: {
+    output: {
+      200: {
+        body: {
+          success: joi.bool().valid(true),
+        },
+      },
+    },
+  },
+};

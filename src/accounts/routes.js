@@ -14,6 +14,8 @@ router.get('/user', validator.user,
   passport.authenticate('jwt', { session: false }), ctrl.user);
 router.put('/user', validator.userUpdate,
   passport.authenticate('jwt', { session: false }), ctrl.updateUser);
+router.delete('/user', validator.deleteUser,
+  passport.authenticate('jwt', { session: false }), ctrl.deleteUser);
 router.get('/user/:id', validator.user,
   passport.authenticate('jwt', { session: false }), ctrl.userById);
 router.put('/user/photo', validator.updateUserPhoto,
