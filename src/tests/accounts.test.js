@@ -31,7 +31,7 @@ describe('Accounts', () => {
       .post('/accounts/sign-in')
       .send({
         email: 'vanya6677@gmail.com',
-        password: '123qwe',
+        password: '123qwe123',
       })
       .end((err, res) => {
         res.should.have.status(200);
