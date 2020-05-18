@@ -11,6 +11,7 @@ const { sendEmail } = require('../utils/sendEmail');
 const uploadS3 = require('../utils/uploadS3');
 const EmailValidation = require('./models/emailValidationRequest');
 const ResetPassword = require('../accounts/models/resetPassword');
+const { reverseGeocode } = require('../utils/googleGeo');
 
 exports.search = async (ctx) => {
   // let users = [];
@@ -98,9 +99,12 @@ exports.updateUser = async (ctx) => {
     user.phone = body.phone;
   }
 
+  const locationName = await reverseGeocode(body.latitude, body.longitude);
+
   user.firstName = body.firstName;
   user.lastName = body.lastName;
   user.location.coordinates = [body.longitude, body.latitude];
+  user.locationName = locationName;
 
   await user.save();
 
@@ -160,7 +164,10 @@ exports.signUp = async (ctx) => {
     categoryId = newCategory._id;
   }
 
+  const locationName = await reverseGeocode(body.latitude, body.longitude);
+
   const user = new User({
+    locationName,
     firstName: body.firstName,
     lastName: body.lastName,
     email: body.email,

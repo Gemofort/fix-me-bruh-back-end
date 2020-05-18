@@ -10,6 +10,7 @@ const userSchema = {
   email: joi.string().email().required(),
   phoneNumber: joi.string().required(),
   location: joi.object().required(),
+  locationName: joi.string().required(),
   image: joi.string().required(),
   category: joi.any().required(),
   emailVerified: joi.bool().required(),

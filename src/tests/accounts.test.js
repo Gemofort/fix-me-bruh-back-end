@@ -31,7 +31,7 @@ describe('Accounts', () => {
       .post('/accounts/sign-in')
       .send({
         email: 'vanya6677@gmail.com',
-        password: '123qwe123',
+        password: '123qwe',
       })
       .end((err, res) => {
         res.should.have.status(200);
@@ -66,7 +66,7 @@ describe('Accounts', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.have.property('user').that.has.keys(['firstName', 'email', 'lastName',
-          'phoneNumber', 'location', '_id', 'category', 'emailVerified', 'phoneVerified', 'image', 'emailValidationRequest']);
+          'phoneNumber', 'location', 'locationName', '_id', 'category', 'emailVerified', 'phoneVerified', 'image', 'emailValidationRequest']);
         done();
       });
   });
@@ -83,7 +83,7 @@ describe('Accounts', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.have.property('user').that.has.keys(['firstName', 'email', 'lastName',
-          'phoneNumber', 'location', '_id', 'category', 'emailVerified', 'phoneVerified', 'image']);
+          'phoneNumber', 'location', 'locationName', '_id', 'category', 'emailVerified', 'phoneVerified', 'image']);
         done();
       });
   });
@@ -109,12 +109,12 @@ describe('Accounts', () => {
   });
   it('Should return user by id if you\'re logged in', (done) => {
     chai.request(app)
-      .get('/accounts/user/5eb0aaf9973de50e8a04ea00')
+      .get('/accounts/user/5ec1cec1ab4b28076f36fb20')
       .set('Authorization', `JWT ${token}`)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.have.property('user').that.has.keys(['firstName', 'email', 'lastName',
-          'phoneNumber', 'location', '_id', 'category', 'emailVerified', 'phoneVerified', 'image']);
+          'phoneNumber', 'location', 'locationName', '_id', 'category', 'emailVerified', 'phoneVerified', 'image']);
         done();
       });
   });

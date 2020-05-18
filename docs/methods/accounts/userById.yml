@@ -38,6 +38,8 @@ get:
                     type: object
                   location: 
                     type: object
+                  locationName: 
+                    type: string
                   emailVerified:
                     type: string
                   phoneVerified:

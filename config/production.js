@@ -28,4 +28,7 @@ module.exports = {
     authToken: process.env.TWILIO_AUTH_TOKEN,
     serviceSid: process.env.TWILIO_SERVICE_SID,
   },
+  google: {
+    apiKey: process.env.GOOGLE_API_KEY,
+  },
 };

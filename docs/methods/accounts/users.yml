@@ -45,23 +45,21 @@ get:
                       type: string
                     lastName: 
                       type: string
-                    title: 
-                      type: string
                     email: 
                       type: string
-                    username: 
-                      type: string
-                    passwordHash: 
-                      type: string
-                    salt: 
+                    phoneNumber: 
                       type: string
                     image: 
                       type: string
-                    rating: 
-                      type: number
-                    price: 
-                      type: number
                     category: 
+                      type: object
+                    location: 
+                      type: object
+                    locationName: 
+                      type: string
+                    emailVerified:
+                      type: string
+                    phoneVerified:
                       type: string
     401 :
       $ref: "../../models/401.error.yml"

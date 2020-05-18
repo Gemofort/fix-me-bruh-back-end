@@ -33,6 +33,9 @@ const userSchema = new mongoose.Schema({
   salt: {
     type: String,
   },
+  locationName: {
+    type: String,
+  },
   image: {
     type: String,
     default: 'http://via.placeholder.com/320x320',
