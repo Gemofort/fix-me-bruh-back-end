@@ -1,9 +1,0 @@
-content: 
-    aplication/json: 
-      description: Bad Request
-      schema: 
-        type: object
-        properties:
-          error:
-            type: string
-            description: Error message
