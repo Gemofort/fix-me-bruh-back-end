@@ -92,4 +92,26 @@ describe ('Accounts', () => {
         done();
       });
   });
+  it('Should return user by id if you\'re logged in', (done) => {
+    chai.request(app)
+      .get('/accounts/user/5ec1cec1ab4b28076f36fb20')
+      .set('Authorization', `JWT ${token}`)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('user').that.has.keys(['firstName', 'email', 'lastName',
+          'phoneNumber', 'location', 'locationName', '_id', 'category', 'emailVerified', 'phoneVerified', 'image']);
+        done();
+      });
+  });
+  it('Should update logged in user image', (done) => {
+    chai.request(app)
+      .put('/accounts/user/photo')
+      .set('Authorization', `JWT ${token}`)
+      .attach('image', fs.readFileSync('something.jpg'), 'something.jpg')
+      .end((end, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('image');
+        done();
+      });
+  });
 });
