@@ -9,22 +9,6 @@ chai.use(chaiHttp);
 let token = '';
 
 describe ('Accounts', () => {
-  before((done) => {
-    chai.request(app)
-      .post('/accounts/sign-in')
-      .send({
-        email: 'kek@gmail.com',
-        password: '123qwe',
-      })
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.have.property('user').that.has.keys(['firstName', 'email', 'lastName']);
-        res.body.should.have.property('token');
-        // eslint-disable-next-line prefer-destructuring
-        token = res.body.token;
-        done();
-      });
-  });
   it('Should sign up user and return success', (done) => {
     chai.request(app)
       .post('/accounts/sign-up')
@@ -55,6 +39,36 @@ describe ('Accounts', () => {
         res.should.have.status(200);
         res.body.should.have.property('user').that.has.keys(['firstName', 'email', 'lastName']);
         res.body.should.have.property('token');
+        // eslint-disable-next-line prefer-destructuring
+        token = res.body.token;
+        done();
+      });
+  });
+  it('Should get logged in user', (done) => {
+    chai.request(app)
+      .get('/accounts/user')
+      .set('Authorization', `JWT ${token}`)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('user').that.has.keys(['firstName', 'email', 'lastName',
+          'phoneNumber', 'location', 'locationName', '_id', 'category', 'emailVerified', 'phoneVerified', 'image', 'emailValidationRequest']);
+        done();
+      });
+  });
+  it('Should update logged in user', (done) => {
+    chai.request(app)
+      .put('/accounts/user')
+      .set('Authorization', `JWT ${token}`)
+      .send({
+        firstName: 'updatedAnton',
+        lastName: 'updatedTrudov',
+        longitude: 29.911230,
+        latitude: 50.074718,
+      })
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('user').that.has.keys(['firstName', 'email', 'lastName',
+          'phoneNumber', 'location', 'locationName', '_id', 'category', 'emailVerified', 'phoneVerified', 'image']);
         done();
       });
   });
