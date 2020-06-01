@@ -72,4 +72,24 @@ describe ('Accounts', () => {
         done();
       });
   });
+  it('Should return all users', (done) => {
+    chai.request(app)
+      .get('/accounts/search')
+      .set('Authorization', `JWT ${token}`)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('users');
+        done();
+      });
+  });
+  it('Should return all users by query, category ID, sorting by price or rating', (done) => {
+    chai.request(app)
+      .get('/accounts/search?name=I&lat=50.074718&lng=29.81123&category=x')
+      .set('Authorization', `JWT ${token}`)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('users');
+        done();
+      });
+  });
 });
