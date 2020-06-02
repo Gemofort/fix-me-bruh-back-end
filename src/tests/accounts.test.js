@@ -28,6 +28,25 @@ describe('Accounts', () => {
         done();
       });
   });
+  it('Should sign up user and return duplicate error', (done) => {
+    chai.request(app)
+      .post('/accounts/sign-up')
+      .send({
+        firstName: 'Anton',
+        lastName: 'Pokemon',
+        email: 'trudovanton1@gmail.com',
+        password: '123qwe',
+        phoneNumber: '+380637242275',
+        longitude: 29.911230,
+        latitude: 50.074718,
+        category: 'mister',
+      })
+      .end((err, res) => {
+        res.should.have.status(500);
+        res.body.should.have.property('error');
+        done();
+      });
+  });
   it('Should sign up user and return validation error', (done) => {
     chai.request(app)
       .post('/accounts/sign-up')
@@ -40,6 +59,20 @@ describe('Accounts', () => {
         longitude: 29.911230,
         latitude: 50.074718,
         category: 'mister',
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('error');
+        res.body.should.have.property('type');
+        done();
+      });
+  });
+  it('Should sign in and return output validation error', (done) => {
+    chai.request(app)
+      .post('/accounts/sign-in')
+      .send({
+        email: 'trudovanton1212@gmail.com',
+        password: '123qwe',
       })
       .end((err, res) => {
         res.should.have.status(400);
