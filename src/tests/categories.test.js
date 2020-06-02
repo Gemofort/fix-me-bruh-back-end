@@ -12,7 +12,7 @@ describe('Categories', () => {
     chai.request(app)
       .post('/accounts/sign-in')
       .send({
-        email: 'trudovanton1@gmail.com',
+        email: 'kek@gmail.com',
         password: '123qwe',
       })
       .end((err, res) => {

@@ -67,7 +67,7 @@ describe('Accounts', () => {
         done();
       });
   });
-  it('Should sign in and return output validation error', (done) => {
+  it('Should login and return output validation error', (done) => {
     chai.request(app)
       .post('/accounts/sign-in')
       .send({
@@ -167,6 +167,16 @@ describe('Accounts', () => {
         done();
       });
   });
+  it('Should update with wrong image extension', (done) => {
+    chai.request(app)
+      .put('/accounts/user/photo')
+      .set('Authorization', `JWT ${token}`)
+      .attach('image', fs.readFileSync('something.pdf'), 'something.pdf')
+      .end((end, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
   it('Should send Veriification code to phone number', (done) => {
     chai.request(app)
       .post('/accounts/verify')
@@ -184,6 +194,15 @@ describe('Accounts', () => {
       .end((end, res) => {
         res.should.have.status(200);
         res.body.should.have.property('success');
+        done();
+      });
+  });
+  it('Should delete logged in user', (done) => {
+    chai.request(app)
+      .delete('/accounts/user')
+      .set('Authorization', `JWT ${token}`)
+      .end((err, res) => {
+        res.should.have.status(200);
         done();
       });
   });
