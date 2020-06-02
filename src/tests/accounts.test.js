@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 
 let token = '';
 
-describe ('Accounts', () => {
+describe('Accounts', () => {
   it('Should sign up user and return success', (done) => {
     chai.request(app)
       .post('/accounts/sign-up')
@@ -25,6 +25,26 @@ describe ('Accounts', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.have.property('success');
+        done();
+      });
+  });
+  it('Should sign up user and return validation error', (done) => {
+    chai.request(app)
+      .post('/accounts/sign-up')
+      .send({
+        firstName: 'Anton',
+        lastName: 'Pokemon',
+        email: 'trudovanton1',
+        password: '123qwe',
+        phoneNumber: '+380637242275',
+        longitude: 29.911230,
+        latitude: 50.074718,
+        category: 'mister',
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('error');
+        res.body.should.have.property('type');
         done();
       });
   });
@@ -111,6 +131,26 @@ describe ('Accounts', () => {
       .end((end, res) => {
         res.should.have.status(200);
         res.body.should.have.property('image');
+        done();
+      });
+  });
+  it('Should send Veriification code to phone number', (done) => {
+    chai.request(app)
+      .post('/accounts/verify')
+      .set('Authorization', `JWT ${token}`)
+      .end((end, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('success');
+        done();
+      });
+  });
+  it('Should resend Verification email', (done) => {
+    chai.request(app)
+      .post('/accounts/user/email')
+      .set('Authorization', `JWT ${token}`)
+      .end((end, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('success');
         done();
       });
   });
