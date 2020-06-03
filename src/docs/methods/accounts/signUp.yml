@@ -1,0 +1,42 @@
+post:
+  summary: Sign Up
+  description: Sign up user and return result (email is unique, password is longer than 6 symbols)
+  tags:
+    - Accounts
+  security:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            firstName:
+              type: string
+            lastName:
+              type: string
+            email:
+              type: string
+            password:
+              type: string
+            phoneNumber:
+              type: string
+            longitude:
+              type: number
+            latitude:
+              type: number
+            category:
+              type: string
+  responses:
+    "200":
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success: 
+                type: boolean
+                description: true
+    "400" :
+      $ref: "../../models/400.error.yml"
+    default:
+      $ref: "../../models/400.error.yml"

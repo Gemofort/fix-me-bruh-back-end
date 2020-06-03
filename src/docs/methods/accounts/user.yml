@@ -1,0 +1,127 @@
+get:
+  summary: User
+  description: Get sighned in user
+  tags:
+    - Accounts
+  security:
+    - ApiKeyAuth: []
+  responses:
+    "200":
+      content:
+        application/json:
+          description: User object
+          schema:
+            type: object
+            properties:
+              user:
+                type: object
+                properties:
+                  _id: 
+                    type: string
+                    description: id of user
+                  firstName: 
+                    type: string
+                    description: first name of user
+                  lastName: 
+                    type: string
+                    description: last name of user
+                  email: 
+                    type: string
+                    description: email of user
+                  phoneNumber: 
+                    type: string
+                    description: phone number of user
+                  image: 
+                    type: string
+                    description: url of user photo
+                  category: 
+                    type: object
+                    description: category of user
+                  location: 
+                    type: object
+                    description: location of user
+                  locationName: 
+                    type: string
+                    description: location name of user
+                  emailVerified:
+                    type: string
+                  phoneVerified:
+                    type: string
+    404 :
+      $ref: "../../models/401.error.yml"
+    default:
+      $ref: "../../models/error.yml"
+
+put:
+  summary: User
+  description: Update signed in user
+  tags:
+    - Accounts
+  security: 
+    - ApiKeyAuth: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            firstName:
+              type: string
+              description: first name of user
+            lastName:
+              type: string
+              description: last name of user
+            latitude:
+              type: number
+              description: latitude of user location
+            longitude:
+              type: number
+              description: longtitude of user location
+            email(optional):
+              type: string
+              description: email of user
+            phoneNumber(optional):
+              type: string
+              description: phone number of user
+  responses:
+    "200":
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user: 
+                type: object
+                properties:
+                  _id: 
+                    type: string
+                    description: id of user
+                  firstName: 
+                    type: string
+                    description: first name of user
+                  lastName: 
+                    type: string
+                    description: last name of user
+                  email: 
+                    type: string
+                    description: email of user
+                  phoneNumber: 
+                    type: string
+                    description: phone number of user
+                  image: 
+                    type: string
+                    description: url of user photo
+                  category: 
+                    type: object
+                    description: user category
+                  location: 
+                    type: object
+                    description: location of user
+                  emailVerified:
+                    type: string
+                  phoneVerified:
+                    type: string
+    401 :
+      $ref: "../../models/401.error.yml"
+    default:
+      $ref: "../../models/error.yml"
