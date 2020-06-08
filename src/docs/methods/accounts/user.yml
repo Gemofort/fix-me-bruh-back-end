@@ -1,6 +1,6 @@
 get:
   summary: User
-  description: Get sighned in user
+  description: Get signed in user
   tags:
     - Accounts
   security:
