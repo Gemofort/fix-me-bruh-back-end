@@ -1,0 +1,29 @@
+put:
+  summary: Update user photo
+  description: Update user photo and return new image link
+  tags:
+    - Accounts
+  security:
+    - ApiKeyAuth: []
+  requestBody:
+    content: 
+      multipart/form-data: 
+        schema:            
+          type: object
+          properties:      
+            image: 
+              type: string
+              format: binary
+  responses:
+    "200":
+      content:
+        application/json:
+          description: Object with new image link
+          schema:
+            type: object
+            properties:
+              image: 
+                type: string
+                description: new image link
+    default:
+      $ref: "../../models/error.yml"

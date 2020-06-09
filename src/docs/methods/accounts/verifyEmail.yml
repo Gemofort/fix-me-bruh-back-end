@@ -1,0 +1,33 @@
+delete:
+  summary: User
+  description: Verify user email
+  tags:
+    - Accounts
+  security: 
+    - ApiKeyAuth: []
+  parameters:
+    - in: path
+      name: id
+      schema:
+        type: string
+      required: true
+      description: ID of email verification request
+  responses:
+    "200":
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user: 
+                type: object
+                properties:
+                  success: 
+                    type: boolean
+                  
+    401 :
+      $ref: "../../models/401.error.yml"
+    404: 
+      $ref: "../../models/404.error.yml"
+    default:
+      $ref: "../../models/error.yml"

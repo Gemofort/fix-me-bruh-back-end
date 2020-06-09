@@ -1,0 +1,17 @@
+post:
+  summary: Verify
+  description: Send verification code to user phone
+  tags:
+    - Accounts
+  security:
+    "200":
+      content:
+        application/json:
+          description: Sucess
+          schema:
+            type: object
+            properties:
+              success: 
+                type: boolean
+    default:
+      $ref: "../../models/error.yml"

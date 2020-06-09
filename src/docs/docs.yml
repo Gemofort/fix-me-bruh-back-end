@@ -1,0 +1,44 @@
+openapi: 3.0.0
+info:
+  title: My Fixer API docs
+  description: Made with love❤️️️️
+  version: 0.0.1
+  host: http://3.123.84.44
+tags:
+  - name: Accounts
+  - name: Categories
+paths:
+  /accounts/sign-in:
+    $ref: methods/accounts/signIn.yml
+  /accounts/sign-up:
+    $ref: methods/accounts/signUp.yml
+  /accounts/user:
+    $ref: methods/accounts/user.yml
+  /accounts/user/photo:
+    $ref: methods/accounts/userPhoto.yml
+  /accounts/users:
+    $ref: methods/accounts/users.yml
+  /accounts/user/{id}:
+    $ref: methods/accounts/userById.yml
+  /accounts/verify:
+    $ref: methods/accounts/verify.yml
+  /accounts/verify-code:
+    $ref: methods/accounts/verifyCode.yml
+  /accounts/user/email/{id}: 
+    $ref: methods/accounts/verifyEmail.yml
+  /accounts/user/email: 
+    $ref: methods/accounts/resendEmail.yml
+  /accounts/user/reset-password: 
+    $ref: methods/accounts/resetPasswordRequest.yml
+  /accounts/user/reset-password/{id}: 
+    $ref: methods/accounts/resetPassword.yml
+  /categories:
+    $ref: methods/categories/categories.yml
+servers:
+  - url: /
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
