@@ -14,7 +14,7 @@ const router = new Router();
 
 passport.initialize();
 
-app.use(serve('docs'));
+app.use(serve('src/docs'));
 app.use(koaSwagger({
   routePrefix: '/docs',
   hideTopbar: true,

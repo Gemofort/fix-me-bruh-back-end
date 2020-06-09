@@ -3,7 +3,7 @@ info:
   title: My Fixer API docs
   description: Made with love❤️️️️
   version: 0.0.1
-  host: http://3.123.84.44
+  host: https://fix-me-bruh.herokuapp.com/
 tags:
   - name: Accounts
   - name: Categories
