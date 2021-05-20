@@ -62,7 +62,10 @@ exports.search = async (ctx) => {
 };
 
 exports.user = async (ctx) => {
-  const plainUser = await (await User.findOne({ _id: ctx.state.user.id }).populate('category').select('-passwordHash -salt -__v')).toObject();
+  const plainUser = await (await User.findOne({ _id: ctx.state.user.id })
+    .populate('category')
+    .select('-passwordHash -salt -__v'))
+    .toObject();
 
   const emailValidationRequest = await EmailValidation.findOne({ user: ObjectId(plainUser._id) }).select('-__v');
 
