@@ -32,7 +32,7 @@ exports.signUp = {
       category: joi.string().required(),
     },
     output: {
-      200: {
+      201: {
         body: {
           success: joi.bool().valid(true),
         },
